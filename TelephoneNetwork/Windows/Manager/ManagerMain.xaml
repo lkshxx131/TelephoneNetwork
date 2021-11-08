@@ -1,0 +1,69 @@
+﻿<Window x:Class="TelephoneNetwork.Windows.Manager.ManagerMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TelephoneNetwork.Windows.Manager"
+        mc:Ignorable="d"
+        Title="Менеджер"
+        Width="1180"
+        Height="720"
+        Background="#F1FFFB"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    
+    <Grid>
+        <Rectangle Fill="#5BF3C8"
+                       Width="350"
+                       Height="690"
+                    HorizontalAlignment="Left"/>
+        
+        <StackPanel HorizontalAlignment="Left">
+            <TextBlock Text="Менеджер"                     
+                       Style="{StaticResource TextBlockMain}"
+                       FontSize="36"
+                       VerticalAlignment="Top"
+                       Margin="93 62 93 25"/>
+
+            <WrapPanel HorizontalAlignment="Center">
+                <TextBlock Text="Свердловск"
+                       x:Name="tbkLastNameManager"
+                       Style="{StaticResource TextBlockMain}"
+                       FontSize="24"/>
+                <TextBlock Text="Анатолий"
+                       x:Name="tbkFirstNameManager"
+                       Style="{StaticResource TextBlockMain}"
+                       FontSize="24"
+                       Margin="10 0 0 0"/>
+            </WrapPanel>
+
+            <Button x:Name="btnSubscriber"
+                    Content="Абоненты"
+                    Margin="0 65 0 25"
+                    HorizontalAlignment="Center"
+                    Style="{StaticResource ButtonSmall}" Click="btnSubscriber_Click"/>
+            <Button x:Name="btnTariff"
+                    Content="Тарифы"
+                    HorizontalAlignment="Center"
+                    Style="{StaticResource ButtonSmall}" Click="btnTariff_Click"/>
+            <Button x:Name="btnExit"
+                    Content="Выход"
+                    Margin="0 70 0 30"
+                    HorizontalAlignment="Center"
+                    Style="{StaticResource ButtonSmall}" Click="btnExit_Click"/>
+            <Image Source="LogoMainWindow.png"
+                   Width="140"
+                   Height="122"
+                   HorizontalAlignment="Center"/>
+            <TextBlock Text="NetworkGreen"
+                       HorizontalAlignment="Center"
+                       Style="{StaticResource TextBlockMain}"
+                       FontSize="36"/>
+        </StackPanel>
+
+        <Frame x:Name="frmManager"
+               HorizontalAlignment="Right"
+               Width="825"
+               Height="690"/>
+    </Grid>
+</Window>

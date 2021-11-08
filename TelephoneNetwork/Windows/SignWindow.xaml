@@ -1,0 +1,53 @@
+﻿<Window x:Class="TelephoneNetwork.Windows.SignWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TelephoneNetwork.Windows"
+        mc:Ignorable="d"
+        Title="Авторизация"
+        Width="1180"
+        Height="720"
+        Background="#F1FFFB"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen">
+    
+    <Grid>
+        <Image Source="LogoMain.png"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Top"
+               Width="230"
+               Height="210"
+               Margin="60"/>
+
+        <Button x:Name="btnClose"
+                Content="Закрыть"
+                Foreground="#5BF3C8"
+                FontSize="24"
+                Style="{StaticResource ButtonSmall}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Margin="50 70"
+                Click="btnClose_Click"/>
+
+        <StackPanel HorizontalAlignment="Center"
+                    Width="350">
+            <TextBlock Text="Введите логин:"
+                       HorizontalAlignment="Left"
+                       Margin="0 300 0 15"
+                       Style="{StaticResource TextBlockSign}"/>
+            <TextBox x:Name="txbLogin"
+                     Style="{StaticResource TextBoxSign}"/>
+            <TextBlock Text="Введите пароль:"
+                       HorizontalAlignment="Left"
+                       Margin="0 20 0 15"
+                       Style="{StaticResource TextBlockSign}"/>
+            <PasswordBox x:Name="psbPassword"
+                         Style="{StaticResource PasswordBoxSign}"/>
+            <Button x:Name="btnSign"
+                    Content="Войти"
+                    Margin="0 35"
+                    Style="{StaticResource ButtonBig}" Click="btnSign_Click"/>
+        </StackPanel> 
+    </Grid>
+</Window>

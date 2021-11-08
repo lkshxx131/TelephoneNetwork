@@ -1,0 +1,67 @@
+﻿<Application x:Class="TelephoneNetwork.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:TelephoneNetwork"
+             StartupUri="Windows/SignWindow.xaml">
+    <Application.Resources>
+        <Style TargetType="TextBlock" x:Key="TextBlockSign">
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Foreground" Value="#5BF3C8"/>
+        </Style>
+
+        <Style TargetType="TextBlock" x:Key="TextBlockMain">
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="Foreground" Value="#F1FFFB"/>
+        </Style>
+
+        <Style TargetType="TextBox" x:Key="TextBoxSign">
+            <Setter Property="Background" Value="#F1FFFB"/>
+            <Setter Property="BorderBrush" Value="#5BF3C8"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="Foreground" Value="#5BF3C8"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="Width" Value="350"/>
+            <Setter Property="Height" Value="60"/>
+        </Style>
+
+        <Style TargetType="PasswordBox" x:Key="PasswordBoxSign">
+            <Setter Property="Background" Value="#F1FFFB"/>
+            <Setter Property="BorderBrush" Value="#5BF3C8"/>
+            <Setter Property="BorderThickness" Value="3"/>
+            <Setter Property="Foreground" Value="#5BF3C8"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="40"/>
+            <Setter Property="Width" Value="350"/>
+            <Setter Property="Height" Value="60"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="ButtonBig">
+            <Setter Property="Background" Value="#5BF3C8"/>
+            <Setter Property="BorderBrush" Value="#5BF3C8"/>
+            <Setter Property="Foreground" Value="#F1FFFB"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="Height" Value="60"/>
+        </Style>
+
+        <Style TargetType="Button" x:Key="ButtonSmall">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#F1FFFB"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="36"/>
+        </Style>
+
+
+        <Style TargetType="GridViewColumnHeader">
+            <Setter Property="Background" Value="#5BF3C8"/>
+            <Setter Property="Foreground" Value="#F1FFFB"/>
+            <Setter Property="BorderBrush" Value="#5BF3C8"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+        </Style>
+
+    </Application.Resources>
+</Application>

@@ -1,0 +1,67 @@
+﻿<Page x:Class="TelephoneNetwork.Windows.SubscriberPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TelephoneNetwork.Windows"
+      mc:Ignorable="d"
+      d:DesignWidth="825"
+      d:DesignHeight="690"
+      Background="#F1FFFB"
+      Title="SubscriberPageManager">
+
+    <Grid>
+        <Button x:Name="btnBack"
+                Content="Назад"
+                Width="200"
+                Height="40"
+                Style="{StaticResource ButtonBig}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Margin="20 20"
+                Click="btnBack_Click"/>
+
+        <ListView x:Name="lvSubscriber"
+                  Width="825"
+                  Height="500"
+                  Foreground="#5BF3C8"
+                  SelectionChanged="lvSubscriber_SelectionChanged">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        Header="Фамилия" Width="130" DisplayMemberBinding="{Binding LastName}"/>
+                    <GridViewColumn
+                        Header="Имя" Width="130" DisplayMemberBinding="{Binding FirstName}"/>
+                    <GridViewColumn
+                        Header="Отчество" Width="130" DisplayMemberBinding="{Binding Patronymic}"/>
+                    <GridViewColumn
+                        Header="Пол" Width="50" DisplayMemberBinding="{Binding GenderCode}"/>
+                    <GridViewColumn
+                        Header="Серия паспорта" Width="110" DisplayMemberBinding="{Binding PassportSeries}"/>
+                    <GridViewColumn
+                        Header="Номер паспорта" Width="110" DisplayMemberBinding="{Binding PassportNumber}"/>
+                    <GridViewColumn
+                        Header="Дата регистрации" Width="150" DisplayMemberBinding="{Binding RegDate}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <Button x:Name="btnAddSubscriber"
+                Content="Добавить"
+                Width="200"
+                Height="40"
+                Style="{StaticResource ButtonBig}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Margin="20 20 0 30"
+                Click="btnAddSubscriber_Click"/>
+        <Button x:Name="btnOpenSubscriber"
+                Content="Открыть"
+                Width="200"
+                Height="40"
+                Style="{StaticResource ButtonBig}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Margin="250 20 0 30"
+                Click="btnOpenSubscriber_Click"/>
+    </Grid>
+</Page>
