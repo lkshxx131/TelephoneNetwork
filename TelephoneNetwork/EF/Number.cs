@@ -21,9 +21,8 @@ namespace TelephoneNetwork.EF
         }
     
         public int IdNumber { get; set; }
-        public int IdEmloyee { get; set; }
         public int IdSubscriber { get; set; }
-        public string Number1 { get; set; }
+        public string NumberName { get; set; }
         public System.DateTime RegDate { get; set; }
         public Nullable<int> IdTariffPlan { get; set; }
         public decimal Balance { get; set; }
@@ -31,7 +30,6 @@ namespace TelephoneNetwork.EF
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Calls> Calls { get; set; }
-        public virtual Employee Employee { get; set; }
         public virtual Status Status { get; set; }
         public virtual Subscriber Subscriber { get; set; }
         public virtual TariffPlan TariffPlan { get; set; }

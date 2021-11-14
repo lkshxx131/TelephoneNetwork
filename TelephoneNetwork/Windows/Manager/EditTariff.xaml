@@ -25,6 +25,7 @@
                        FontSize="18"/>
             <TextBox x:Name="txbNameTariff"
                      HorizontalAlignment="Left"
+                     FontSize="16"
                      Style="{StaticResource TextBoxSign}"
                      Width="250"
                      Height="30"
@@ -37,6 +38,7 @@
                        FontSize="18"/>
             <TextBox x:Name="txbDescriptionTariff"
                      HorizontalAlignment="Left"
+                     FontSize="16"
                      Style="{StaticResource TextBoxSign}"
                      Width="250"
                      Height="30"
@@ -49,6 +51,7 @@
                        FontSize="18"/>
             <TextBox x:Name="txbCostTariff"
                      HorizontalAlignment="Left"
+                     FontSize="16"
                      Style="{StaticResource TextBoxSign}"
                      Width="250"
                      Height="30"

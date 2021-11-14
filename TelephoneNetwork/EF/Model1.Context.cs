@@ -29,8 +29,6 @@ namespace TelephoneNetwork.EF
     
         public virtual DbSet<Benefit> Benefit { get; set; }
         public virtual DbSet<Calls> Calls { get; set; }
-        public virtual DbSet<Cheque> Cheque { get; set; }
-        public virtual DbSet<Direction> Direction { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Gender> Gender { get; set; }
         public virtual DbSet<Number> Number { get; set; }
@@ -39,6 +37,8 @@ namespace TelephoneNetwork.EF
         public virtual DbSet<Subscriber> Subscriber { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TariffPlan> TariffPlan { get; set; }
+        public virtual DbSet<CallsView> CallsView { get; set; }
+        public virtual DbSet<NumberView> NumberView { get; set; }
         public virtual DbSet<SubscriberView> SubscriberView { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)

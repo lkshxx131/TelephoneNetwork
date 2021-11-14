@@ -26,29 +26,32 @@
                        Margin="93 62 93 25"/>
 
             <WrapPanel HorizontalAlignment="Center">
-                <TextBlock Text="Свердловск"
-                       x:Name="tbkLastNameManager"
-                       Style="{StaticResource TextBlockMain}"
-                       FontSize="24"/>
-                <TextBlock Text="Анатолий"
-                       x:Name="tbkFirstNameManager"
-                       Style="{StaticResource TextBlockMain}"
-                       FontSize="24"
-                       Margin="10 0 0 0"/>
+                <TextBlock x:Name="tbkLastNameManager"
+                           Style="{StaticResource TextBlockMain}"
+                           FontSize="24"/>
+                <TextBlock x:Name="tbkFirstNameManager"
+                          Style="{StaticResource TextBlockMain}"
+                          FontSize="24"
+                          Margin="10 0 0 0"/>
             </WrapPanel>
 
             <Button x:Name="btnSubscriber"
                     Content="Абоненты"
-                    Margin="0 65 0 25"
+                    Margin="0 50 0 20"
                     HorizontalAlignment="Center"
                     Style="{StaticResource ButtonSmall}" Click="btnSubscriber_Click"/>
             <Button x:Name="btnTariff"
                     Content="Тарифы"
                     HorizontalAlignment="Center"
                     Style="{StaticResource ButtonSmall}" Click="btnTariff_Click"/>
+            <Button x:Name="btnCalls"
+                    Content="Звонки"
+                    Margin="0 20 0 0"
+                    HorizontalAlignment="Center"
+                    Style="{StaticResource ButtonSmall}" Click="btnCalls_Click"/>
             <Button x:Name="btnExit"
                     Content="Выход"
-                    Margin="0 70 0 30"
+                    Margin="0 60 0 30"
                     HorizontalAlignment="Center"
                     Style="{StaticResource ButtonSmall}" Click="btnExit_Click"/>
             <Image Source="LogoMainWindow.png"

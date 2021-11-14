@@ -15,17 +15,11 @@ namespace TelephoneNetwork.EF
     public partial class Calls
     {
         public int IdCalls { get; set; }
-        public int IdNumber { get; set; }
+        public int IdInNumber { get; set; }
         public System.DateTime CallsDate { get; set; }
         public int DurationInMinute { get; set; }
-        public string CompanionNumber { get; set; }
-        public string DirectionCode { get; set; }
-        public decimal CostOfMinute { get; set; }
-        public decimal CostCalls { get; set; }
-        public int IdCheque { get; set; }
+        public int IdOutNumber { get; set; }
     
-        public virtual Cheque Cheque { get; set; }
-        public virtual Direction Direction { get; set; }
         public virtual Number Number { get; set; }
     }
 }

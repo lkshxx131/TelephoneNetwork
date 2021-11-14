@@ -18,29 +18,10 @@
             <PropertyRef Name="IdCalls" />
           </Key>
           <Property Name="IdCalls" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdNumber" Type="int" Nullable="false" />
+          <Property Name="IdInNumber" Type="int" Nullable="false" />
           <Property Name="CallsDate" Type="date" Nullable="false" />
           <Property Name="DurationInMinute" Type="int" Nullable="false" />
-          <Property Name="CompanionNumber" Type="nchar" MaxLength="11" Nullable="false" />
-          <Property Name="DirectionCode" Type="nchar" MaxLength="1" Nullable="false" />
-          <Property Name="CostOfMinute" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="CostCalls" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="IdCheque" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Cheque">
-          <Key>
-            <PropertyRef Name="IdCheque" />
-          </Key>
-          <Property Name="IdCheque" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdTariffPlan" Type="int" Nullable="false" />
-          <Property Name="CostTotal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Direction">
-          <Key>
-            <PropertyRef Name="DirectionCode" />
-          </Key>
-          <Property Name="DirectionCode" Type="nchar" MaxLength="1" Nullable="false" />
-          <Property Name="DirectionName" Type="nvarchar" MaxLength="9" Nullable="false" />
+          <Property Name="IdOutNumber" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -70,9 +51,8 @@
             <PropertyRef Name="IdNumber" />
           </Key>
           <Property Name="IdNumber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="IdEmloyee" Type="int" Nullable="false" />
           <Property Name="IdSubscriber" Type="int" Nullable="false" />
-          <Property Name="Number" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="NumberName" Type="nvarchar" MaxLength="11" Nullable="false" />
           <Property Name="RegDate" Type="date" Nullable="false" />
           <Property Name="IdTariffPlan" Type="int" />
           <Property Name="Balance" Type="decimal" Precision="10" Scale="2" Nullable="false" />
@@ -108,7 +88,7 @@
           <Property Name="PassportNumber" Type="nchar" MaxLength="6" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="150" />
           <Property Name="RegDate" Type="date" Nullable="false" />
-          <Property Name="BenefitCode" Type="nchar" MaxLength="1" />
+          <Property Name="BenefitCode" Type="nchar" MaxLength="1" Nullable="false" />
           <Property Name="BenefitCertififcate" Type="nchar" MaxLength="10" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
@@ -133,49 +113,94 @@
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "SubscribersTelephoneNetwork.dbo.CallsView" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="CallsView">
+          <Key>
+            <PropertyRef Name="IdNumber" />
+            <PropertyRef Name="IdSubscriber" />
+            <PropertyRef Name="NumberName" />
+            <PropertyRef Name="RegDate" />
+            <PropertyRef Name="Balance" />
+            <PropertyRef Name="StatusCode" />
+            <PropertyRef Name="IdCalls" />
+            <PropertyRef Name="IdInNumber" />
+            <PropertyRef Name="CallsDate" />
+            <PropertyRef Name="DurationInMinute" />
+            <PropertyRef Name="IdOutNumber" />
+          </Key>
+          <Property Name="IdNumber" Type="int" Nullable="false" />
+          <Property Name="IdSubscriber" Type="int" Nullable="false" />
+          <Property Name="NumberName" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="RegDate" Type="date" Nullable="false" />
+          <Property Name="IdTariffPlan" Type="int" />
+          <Property Name="Balance" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="StatusCode" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="IdCalls" Type="int" Nullable="false" />
+          <Property Name="IdInNumber" Type="int" Nullable="false" />
+          <Property Name="CallsDate" Type="date" Nullable="false" />
+          <Property Name="DurationInMinute" Type="int" Nullable="false" />
+          <Property Name="IdOutNumber" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "SubscribersTelephoneNetwork.dbo.NumberView" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="NumberView">
+          <Key>
+            <PropertyRef Name="IdNumber" />
+            <PropertyRef Name="Balance" />
+            <PropertyRef Name="NumberName" />
+            <PropertyRef Name="RegDate" />
+            <PropertyRef Name="TariffName" />
+            <PropertyRef Name="IsDeleted" />
+            <PropertyRef Name="Cost" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="IdSubscriber" />
+            <PropertyRef Name="StatusCode" />
+            <PropertyRef Name="IdTariffPlan" />
+          </Key>
+          <Property Name="IdNumber" Type="int" Nullable="false" />
+          <Property Name="Balance" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="NumberName" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="RegDate" Type="date" Nullable="false" />
+          <Property Name="TariffName" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
+          <Property Name="IdSubscriber" Type="int" Nullable="false" />
+          <Property Name="StatusCode" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="IdTariffPlan" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "SubscribersTelephoneNetwork.dbo.SubscriberView" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="SubscriberView">
           <Key>
+            <PropertyRef Name="IdSubscriber" />
             <PropertyRef Name="LastName" />
             <PropertyRef Name="FirstName" />
             <PropertyRef Name="GenderCode" />
             <PropertyRef Name="PassportSeries" />
             <PropertyRef Name="PassportNumber" />
             <PropertyRef Name="RegDate" />
+            <PropertyRef Name="BenefitCode" />
+            <PropertyRef Name="IsDeleted" />
           </Key>
+          <Property Name="IdSubscriber" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Patronymic" Type="nvarchar" MaxLength="50" />
           <Property Name="GenderCode" Type="nchar" MaxLength="1" Nullable="false" />
           <Property Name="BirthDate" Type="date" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="PassportSeries" Type="nchar" MaxLength="4" Nullable="false" />
           <Property Name="PassportNumber" Type="nchar" MaxLength="6" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="150" />
           <Property Name="RegDate" Type="date" Nullable="false" />
+          <Property Name="BenefitCode" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="BenefitCertififcate" Type="nchar" MaxLength="10" />
+          <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Calls_Cheque">
-          <End Role="Cheque" Type="Self.Cheque" Multiplicity="1" />
-          <End Role="Calls" Type="Self.Calls" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cheque">
-              <PropertyRef Name="IdCheque" />
-            </Principal>
-            <Dependent Role="Calls">
-              <PropertyRef Name="IdCheque" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Calls_Direction">
-          <End Role="Direction" Type="Self.Direction" Multiplicity="1" />
-          <End Role="Calls" Type="Self.Calls" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Direction">
-              <PropertyRef Name="DirectionCode" />
-            </Principal>
-            <Dependent Role="Calls">
-              <PropertyRef Name="DirectionCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Calls_Number">
           <End Role="Number" Type="Self.Number" Multiplicity="1" />
           <End Role="Calls" Type="Self.Calls" Multiplicity="*" />
@@ -184,7 +209,7 @@
               <PropertyRef Name="IdNumber" />
             </Principal>
             <Dependent Role="Calls">
-              <PropertyRef Name="IdNumber" />
+              <PropertyRef Name="IdInNumber" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -209,18 +234,6 @@
             </Principal>
             <Dependent Role="Employee">
               <PropertyRef Name="IdPosition" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Number_Employee">
-          <End Role="Employee" Type="Self.Employee" Multiplicity="1" />
-          <End Role="Number" Type="Self.Number" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="IdEmployee" />
-            </Principal>
-            <Dependent Role="Number">
-              <PropertyRef Name="IdEmloyee" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -261,7 +274,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Subscriber_Benefit">
-          <End Role="Benefit" Type="Self.Benefit" Multiplicity="0..1" />
+          <End Role="Benefit" Type="Self.Benefit" Multiplicity="1" />
           <End Role="Subscriber" Type="Self.Subscriber" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Benefit">
@@ -318,8 +331,6 @@
         <EntityContainer Name="Хранилище SubscribersTelephoneNetworkModelContainer">
           <EntitySet Name="Benefit" EntityType="Self.Benefit" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Calls" EntityType="Self.Calls" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Cheque" EntityType="Self.Cheque" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Direction" EntityType="Self.Direction" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Number" EntityType="Self.Number" Schema="dbo" store:Type="Tables" />
@@ -328,26 +339,57 @@
           <EntitySet Name="Subscriber" EntityType="Self.Subscriber" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TariffPlan" EntityType="Self.TariffPlan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CallsView" EntityType="Self.CallsView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CallsView].[IdNumber] AS [IdNumber], 
+    [CallsView].[IdSubscriber] AS [IdSubscriber], 
+    [CallsView].[NumberName] AS [NumberName], 
+    [CallsView].[RegDate] AS [RegDate], 
+    [CallsView].[IdTariffPlan] AS [IdTariffPlan], 
+    [CallsView].[Balance] AS [Balance], 
+    [CallsView].[StatusCode] AS [StatusCode], 
+    [CallsView].[IdCalls] AS [IdCalls], 
+    [CallsView].[IdInNumber] AS [IdInNumber], 
+    [CallsView].[CallsDate] AS [CallsDate], 
+    [CallsView].[DurationInMinute] AS [DurationInMinute], 
+    [CallsView].[IdOutNumber] AS [IdOutNumber]
+    FROM [dbo].[CallsView] AS [CallsView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="NumberView" EntityType="Self.NumberView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [NumberView].[IdNumber] AS [IdNumber], 
+    [NumberView].[Balance] AS [Balance], 
+    [NumberView].[NumberName] AS [NumberName], 
+    [NumberView].[RegDate] AS [RegDate], 
+    [NumberView].[TariffName] AS [TariffName], 
+    [NumberView].[IsDeleted] AS [IsDeleted], 
+    [NumberView].[Cost] AS [Cost], 
+    [NumberView].[LastName] AS [LastName], 
+    [NumberView].[FirstName] AS [FirstName], 
+    [NumberView].[Patronymic] AS [Patronymic], 
+    [NumberView].[IdSubscriber] AS [IdSubscriber], 
+    [NumberView].[StatusCode] AS [StatusCode], 
+    [NumberView].[IdTariffPlan] AS [IdTariffPlan]
+    FROM [dbo].[NumberView] AS [NumberView]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="SubscriberView" EntityType="Self.SubscriberView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
+    [SubscriberView].[IdSubscriber] AS [IdSubscriber], 
     [SubscriberView].[LastName] AS [LastName], 
     [SubscriberView].[FirstName] AS [FirstName], 
     [SubscriberView].[Patronymic] AS [Patronymic], 
     [SubscriberView].[GenderCode] AS [GenderCode], 
     [SubscriberView].[BirthDate] AS [BirthDate], 
+    [SubscriberView].[Email] AS [Email], 
     [SubscriberView].[PassportSeries] AS [PassportSeries], 
     [SubscriberView].[PassportNumber] AS [PassportNumber], 
-    [SubscriberView].[RegDate] AS [RegDate]
+    [SubscriberView].[Address] AS [Address], 
+    [SubscriberView].[RegDate] AS [RegDate], 
+    [SubscriberView].[BenefitCode] AS [BenefitCode], 
+    [SubscriberView].[BenefitCertififcate] AS [BenefitCertififcate], 
+    [SubscriberView].[IsDeleted] AS [IsDeleted]
     FROM [dbo].[SubscriberView] AS [SubscriberView]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_Calls_Cheque" Association="Self.FK_Calls_Cheque">
-            <End Role="Cheque" EntitySet="Cheque" />
-            <End Role="Calls" EntitySet="Calls" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Calls_Direction" Association="Self.FK_Calls_Direction">
-            <End Role="Direction" EntitySet="Direction" />
-            <End Role="Calls" EntitySet="Calls" />
-          </AssociationSet>
           <AssociationSet Name="FK_Calls_Number" Association="Self.FK_Calls_Number">
             <End Role="Number" EntitySet="Number" />
             <End Role="Calls" EntitySet="Calls" />
@@ -359,10 +401,6 @@
           <AssociationSet Name="FK_Employee_Position" Association="Self.FK_Employee_Position">
             <End Role="Position" EntitySet="Position" />
             <End Role="Employee" EntitySet="Employee" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Number_Employee" Association="Self.FK_Number_Employee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="Number" EntitySet="Number" />
           </AssociationSet>
           <AssociationSet Name="FK_Number_Status" Association="Self.FK_Number_Status">
             <End Role="Status" EntitySet="Status" />
@@ -422,8 +460,6 @@
           <FunctionImport Name="sp_upgraddiagrams" />
           <EntitySet Name="Benefit" EntityType="SubscribersTelephoneNetworkModel.Benefit" />
           <EntitySet Name="Calls" EntityType="SubscribersTelephoneNetworkModel.Calls" />
-          <EntitySet Name="Cheque" EntityType="SubscribersTelephoneNetworkModel.Cheque" />
-          <EntitySet Name="Direction" EntityType="SubscribersTelephoneNetworkModel.Direction" />
           <EntitySet Name="Employee" EntityType="SubscribersTelephoneNetworkModel.Employee" />
           <EntitySet Name="Gender" EntityType="SubscribersTelephoneNetworkModel.Gender" />
           <EntitySet Name="Number" EntityType="SubscribersTelephoneNetworkModel.Number" />
@@ -432,18 +468,12 @@
           <EntitySet Name="Subscriber" EntityType="SubscribersTelephoneNetworkModel.Subscriber" />
           <EntitySet Name="sysdiagrams" EntityType="SubscribersTelephoneNetworkModel.sysdiagrams" />
           <EntitySet Name="TariffPlan" EntityType="SubscribersTelephoneNetworkModel.TariffPlan" />
+          <EntitySet Name="CallsView" EntityType="SubscribersTelephoneNetworkModel.CallsView" />
+          <EntitySet Name="NumberView" EntityType="SubscribersTelephoneNetworkModel.NumberView" />
           <EntitySet Name="SubscriberView" EntityType="SubscribersTelephoneNetworkModel.SubscriberView" />
           <AssociationSet Name="FK_Subscriber_Benefit" Association="SubscribersTelephoneNetworkModel.FK_Subscriber_Benefit">
             <End Role="Benefit" EntitySet="Benefit" />
             <End Role="Subscriber" EntitySet="Subscriber" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Calls_Cheque" Association="SubscribersTelephoneNetworkModel.FK_Calls_Cheque">
-            <End Role="Cheque" EntitySet="Cheque" />
-            <End Role="Calls" EntitySet="Calls" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Calls_Direction" Association="SubscribersTelephoneNetworkModel.FK_Calls_Direction">
-            <End Role="Direction" EntitySet="Direction" />
-            <End Role="Calls" EntitySet="Calls" />
           </AssociationSet>
           <AssociationSet Name="FK_Calls_Number" Association="SubscribersTelephoneNetworkModel.FK_Calls_Number">
             <End Role="Number" EntitySet="Number" />
@@ -456,10 +486,6 @@
           <AssociationSet Name="FK_Employee_Position" Association="SubscribersTelephoneNetworkModel.FK_Employee_Position">
             <End Role="Position" EntitySet="Position" />
             <End Role="Employee" EntitySet="Employee" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Number_Employee" Association="SubscribersTelephoneNetworkModel.FK_Number_Employee">
-            <End Role="Employee" EntitySet="Employee" />
-            <End Role="Number" EntitySet="Number" />
           </AssociationSet>
           <AssociationSet Name="FK_Subscriber_Gender" Association="SubscribersTelephoneNetworkModel.FK_Subscriber_Gender">
             <End Role="Gender" EntitySet="Gender" />
@@ -477,7 +503,7 @@
             <End Role="TariffPlan" EntitySet="TariffPlan" />
             <End Role="Number" EntitySet="Number" />
           </AssociationSet>
-        </EntityContainer>
+          </EntityContainer>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
@@ -503,34 +529,11 @@
             <PropertyRef Name="IdCalls" />
           </Key>
           <Property Name="IdCalls" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdNumber" Type="Int32" Nullable="false" />
+          <Property Name="IdInNumber" Type="Int32" Nullable="false" />
           <Property Name="CallsDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DurationInMinute" Type="Int32" Nullable="false" />
-          <Property Name="CompanionNumber" Type="String" Nullable="false" MaxLength="11" FixedLength="true" Unicode="true" />
-          <Property Name="DirectionCode" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
-          <Property Name="CostOfMinute" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="CostCalls" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="IdCheque" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Cheque" Relationship="SubscribersTelephoneNetworkModel.FK_Calls_Cheque" FromRole="Calls" ToRole="Cheque" />
-          <NavigationProperty Name="Direction" Relationship="SubscribersTelephoneNetworkModel.FK_Calls_Direction" FromRole="Calls" ToRole="Direction" />
+          <Property Name="IdOutNumber" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Number" Relationship="SubscribersTelephoneNetworkModel.FK_Calls_Number" FromRole="Calls" ToRole="Number" />
-        </EntityType>
-        <EntityType Name="Cheque">
-          <Key>
-            <PropertyRef Name="IdCheque" />
-          </Key>
-          <Property Name="IdCheque" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdTariffPlan" Type="Int32" Nullable="false" />
-          <Property Name="CostTotal" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <NavigationProperty Name="Calls" Relationship="SubscribersTelephoneNetworkModel.FK_Calls_Cheque" FromRole="Cheque" ToRole="Calls" />
-        </EntityType>
-        <EntityType Name="Direction">
-          <Key>
-            <PropertyRef Name="DirectionCode" />
-          </Key>
-          <Property Name="DirectionCode" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
-          <Property Name="DirectionName" Type="String" Nullable="false" MaxLength="9" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Calls" Relationship="SubscribersTelephoneNetworkModel.FK_Calls_Direction" FromRole="Direction" ToRole="Calls" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -549,7 +552,6 @@
           <Property Name="Password" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Gender" Relationship="SubscribersTelephoneNetworkModel.FK_Employee_Gender" FromRole="Employee" ToRole="Gender" />
           <NavigationProperty Name="Position" Relationship="SubscribersTelephoneNetworkModel.FK_Employee_Position" FromRole="Employee" ToRole="Position" />
-          <NavigationProperty Name="Number" Relationship="SubscribersTelephoneNetworkModel.FK_Number_Employee" FromRole="Employee" ToRole="Number" />
         </EntityType>
         <EntityType Name="Gender">
           <Key>
@@ -565,15 +567,13 @@
             <PropertyRef Name="IdNumber" />
           </Key>
           <Property Name="IdNumber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdEmloyee" Type="Int32" Nullable="false" />
           <Property Name="IdSubscriber" Type="Int32" Nullable="false" />
-          <Property Name="Number1" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="NumberName" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
           <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="IdTariffPlan" Type="Int32" />
           <Property Name="Balance" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="StatusCode" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Calls" Relationship="SubscribersTelephoneNetworkModel.FK_Calls_Number" FromRole="Number" ToRole="Calls" />
-          <NavigationProperty Name="Employee" Relationship="SubscribersTelephoneNetworkModel.FK_Number_Employee" FromRole="Number" ToRole="Employee" />
           <NavigationProperty Name="Status" Relationship="SubscribersTelephoneNetworkModel.FK_Number_Status" FromRole="Number" ToRole="Status" />
           <NavigationProperty Name="Subscriber" Relationship="SubscribersTelephoneNetworkModel.FK_Number_Subscriber" FromRole="Number" ToRole="Subscriber" />
           <NavigationProperty Name="TariffPlan" Relationship="SubscribersTelephoneNetworkModel.FK_Number_TariffPlan" FromRole="Number" ToRole="TariffPlan" />
@@ -610,7 +610,7 @@
           <Property Name="PassportNumber" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="BenefitCode" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="BenefitCode" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="BenefitCertififcate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Benefit" Relationship="SubscribersTelephoneNetworkModel.FK_Subscriber_Benefit" FromRole="Subscriber" ToRole="Benefit" />
@@ -638,26 +638,91 @@
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Number" Relationship="SubscribersTelephoneNetworkModel.FK_Number_TariffPlan" FromRole="TariffPlan" ToRole="Number" />
         </EntityType>
+        <EntityType Name="CallsView">
+          <Key>
+            <PropertyRef Name="IdNumber" />
+            <PropertyRef Name="IdSubscriber" />
+            <PropertyRef Name="NumberName" />
+            <PropertyRef Name="RegDate" />
+            <PropertyRef Name="Balance" />
+            <PropertyRef Name="StatusCode" />
+            <PropertyRef Name="IdCalls" />
+            <PropertyRef Name="IdInNumber" />
+            <PropertyRef Name="CallsDate" />
+            <PropertyRef Name="DurationInMinute" />
+            <PropertyRef Name="IdOutNumber" />
+          </Key>
+          <Property Name="IdNumber" Type="Int32" Nullable="false" />
+          <Property Name="IdSubscriber" Type="Int32" Nullable="false" />
+          <Property Name="NumberName" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdTariffPlan" Type="Int32" />
+          <Property Name="Balance" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="StatusCode" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="IdCalls" Type="Int32" Nullable="false" />
+          <Property Name="IdInNumber" Type="Int32" Nullable="false" />
+          <Property Name="CallsDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DurationInMinute" Type="Int32" Nullable="false" />
+          <Property Name="IdOutNumber" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NumberView">
+          <Key>
+            <PropertyRef Name="IdNumber" />
+            <PropertyRef Name="Balance" />
+            <PropertyRef Name="NumberName" />
+            <PropertyRef Name="RegDate" />
+            <PropertyRef Name="TariffName" />
+            <PropertyRef Name="IsDeleted" />
+            <PropertyRef Name="Cost" />
+            <PropertyRef Name="LastName" />
+            <PropertyRef Name="FirstName" />
+            <PropertyRef Name="IdSubscriber" />
+            <PropertyRef Name="StatusCode" />
+            <PropertyRef Name="IdTariffPlan" />
+          </Key>
+          <Property Name="IdNumber" Type="Int32" Nullable="false" />
+          <Property Name="Balance" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="NumberName" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TariffName" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IdSubscriber" Type="Int32" Nullable="false" />
+          <Property Name="StatusCode" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="IdTariffPlan" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="SubscriberView">
           <Key>
+            <PropertyRef Name="IdSubscriber" />
             <PropertyRef Name="LastName" />
             <PropertyRef Name="FirstName" />
             <PropertyRef Name="GenderCode" />
             <PropertyRef Name="PassportSeries" />
             <PropertyRef Name="PassportNumber" />
             <PropertyRef Name="RegDate" />
+            <PropertyRef Name="BenefitCode" />
+            <PropertyRef Name="IsDeleted" />
           </Key>
+          <Property Name="IdSubscriber" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Patronymic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="GenderCode" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="BirthDate" Type="DateTime" Precision="0" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PassportSeries" Type="String" Nullable="false" MaxLength="4" FixedLength="true" Unicode="true" />
           <Property Name="PassportNumber" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="BenefitCode" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="BenefitCertififcate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_Subscriber_Benefit">
-          <End Type="SubscribersTelephoneNetworkModel.Benefit" Role="Benefit" Multiplicity="0..1" />
+          <End Type="SubscribersTelephoneNetworkModel.Benefit" Role="Benefit" Multiplicity="1" />
           <End Type="SubscribersTelephoneNetworkModel.Subscriber" Role="Subscriber" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Benefit">
@@ -665,30 +730,6 @@
             </Principal>
             <Dependent Role="Subscriber">
               <PropertyRef Name="BenefitCode" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Calls_Cheque">
-          <End Type="SubscribersTelephoneNetworkModel.Cheque" Role="Cheque" Multiplicity="1" />
-          <End Type="SubscribersTelephoneNetworkModel.Calls" Role="Calls" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cheque">
-              <PropertyRef Name="IdCheque" />
-            </Principal>
-            <Dependent Role="Calls">
-              <PropertyRef Name="IdCheque" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Calls_Direction">
-          <End Type="SubscribersTelephoneNetworkModel.Direction" Role="Direction" Multiplicity="1" />
-          <End Type="SubscribersTelephoneNetworkModel.Calls" Role="Calls" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Direction">
-              <PropertyRef Name="DirectionCode" />
-            </Principal>
-            <Dependent Role="Calls">
-              <PropertyRef Name="DirectionCode" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -700,7 +741,7 @@
               <PropertyRef Name="IdNumber" />
             </Principal>
             <Dependent Role="Calls">
-              <PropertyRef Name="IdNumber" />
+              <PropertyRef Name="IdInNumber" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -725,18 +766,6 @@
             </Principal>
             <Dependent Role="Employee">
               <PropertyRef Name="IdPosition" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Number_Employee">
-          <End Type="SubscribersTelephoneNetworkModel.Employee" Role="Employee" Multiplicity="1" />
-          <End Type="SubscribersTelephoneNetworkModel.Number" Role="Number" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Employee">
-              <PropertyRef Name="IdEmployee" />
-            </Principal>
-            <Dependent Role="Number">
-              <PropertyRef Name="IdEmloyee" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -788,7 +817,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -830,32 +859,11 @@
           <EntitySetMapping Name="Calls">
             <EntityTypeMapping TypeName="SubscribersTelephoneNetworkModel.Calls">
               <MappingFragment StoreEntitySet="Calls">
-                <ScalarProperty Name="IdCheque" ColumnName="IdCheque" />
-                <ScalarProperty Name="CostCalls" ColumnName="CostCalls" />
-                <ScalarProperty Name="CostOfMinute" ColumnName="CostOfMinute" />
-                <ScalarProperty Name="DirectionCode" ColumnName="DirectionCode" />
-                <ScalarProperty Name="CompanionNumber" ColumnName="CompanionNumber" />
+                <ScalarProperty Name="IdOutNumber" ColumnName="IdOutNumber" />
                 <ScalarProperty Name="DurationInMinute" ColumnName="DurationInMinute" />
                 <ScalarProperty Name="CallsDate" ColumnName="CallsDate" />
-                <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
+                <ScalarProperty Name="IdInNumber" ColumnName="IdInNumber" />
                 <ScalarProperty Name="IdCalls" ColumnName="IdCalls" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Cheque">
-            <EntityTypeMapping TypeName="SubscribersTelephoneNetworkModel.Cheque">
-              <MappingFragment StoreEntitySet="Cheque">
-                <ScalarProperty Name="CostTotal" ColumnName="CostTotal" />
-                <ScalarProperty Name="IdTariffPlan" ColumnName="IdTariffPlan" />
-                <ScalarProperty Name="IdCheque" ColumnName="IdCheque" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Direction">
-            <EntityTypeMapping TypeName="SubscribersTelephoneNetworkModel.Direction">
-              <MappingFragment StoreEntitySet="Direction">
-                <ScalarProperty Name="DirectionName" ColumnName="DirectionName" />
-                <ScalarProperty Name="DirectionCode" ColumnName="DirectionCode" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -891,9 +899,8 @@
                 <ScalarProperty Name="Balance" ColumnName="Balance" />
                 <ScalarProperty Name="IdTariffPlan" ColumnName="IdTariffPlan" />
                 <ScalarProperty Name="RegDate" ColumnName="RegDate" />
-                <ScalarProperty Name="Number1" ColumnName="Number" />
+                <ScalarProperty Name="NumberName" ColumnName="NumberName" />
                 <ScalarProperty Name="IdSubscriber" ColumnName="IdSubscriber" />
-                <ScalarProperty Name="IdEmloyee" ColumnName="IdEmloyee" />
                 <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -957,21 +964,64 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CallsView">
+            <EntityTypeMapping TypeName="SubscribersTelephoneNetworkModel.CallsView">
+              <MappingFragment StoreEntitySet="CallsView">
+                <ScalarProperty Name="IdOutNumber" ColumnName="IdOutNumber" />
+                <ScalarProperty Name="DurationInMinute" ColumnName="DurationInMinute" />
+                <ScalarProperty Name="CallsDate" ColumnName="CallsDate" />
+                <ScalarProperty Name="IdInNumber" ColumnName="IdInNumber" />
+                <ScalarProperty Name="IdCalls" ColumnName="IdCalls" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="IdTariffPlan" ColumnName="IdTariffPlan" />
+                <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+                <ScalarProperty Name="NumberName" ColumnName="NumberName" />
+                <ScalarProperty Name="IdSubscriber" ColumnName="IdSubscriber" />
+                <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NumberView">
+            <EntityTypeMapping TypeName="SubscribersTelephoneNetworkModel.NumberView">
+              <MappingFragment StoreEntitySet="NumberView">
+                <ScalarProperty Name="IdTariffPlan" ColumnName="IdTariffPlan" />
+                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
+                <ScalarProperty Name="IdSubscriber" ColumnName="IdSubscriber" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="TariffName" ColumnName="TariffName" />
+                <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+                <ScalarProperty Name="NumberName" ColumnName="NumberName" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SubscriberView">
             <EntityTypeMapping TypeName="SubscribersTelephoneNetworkModel.SubscriberView">
               <MappingFragment StoreEntitySet="SubscriberView">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="BenefitCertififcate" ColumnName="BenefitCertififcate" />
+                <ScalarProperty Name="BenefitCode" ColumnName="BenefitCode" />
                 <ScalarProperty Name="RegDate" ColumnName="RegDate" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="PassportNumber" ColumnName="PassportNumber" />
                 <ScalarProperty Name="PassportSeries" ColumnName="PassportSeries" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
                 <ScalarProperty Name="GenderCode" ColumnName="GenderCode" />
                 <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="IdSubscriber" ColumnName="IdSubscriber" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

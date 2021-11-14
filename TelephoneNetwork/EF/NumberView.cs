@@ -12,19 +12,20 @@ namespace TelephoneNetwork.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class Cheque
+    public partial class NumberView
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Cheque()
-        {
-            this.Calls = new HashSet<Calls>();
-        }
-    
-        public int IdCheque { get; set; }
+        public int IdNumber { get; set; }
+        public decimal Balance { get; set; }
+        public string NumberName { get; set; }
+        public System.DateTime RegDate { get; set; }
+        public string TariffName { get; set; }
+        public bool IsDeleted { get; set; }
+        public decimal Cost { get; set; }
+        public string LastName { get; set; }
+        public string FirstName { get; set; }
+        public string Patronymic { get; set; }
+        public int IdSubscriber { get; set; }
+        public string StatusCode { get; set; }
         public int IdTariffPlan { get; set; }
-        public decimal CostTotal { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Calls> Calls { get; set; }
     }
 }

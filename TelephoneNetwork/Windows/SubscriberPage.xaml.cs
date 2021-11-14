@@ -21,7 +21,7 @@ namespace TelephoneNetwork.Windows
     /// </summary>
     public partial class SubscriberPage : Page
     {
-        List<SubscriberView> subscriberViews = new List<SubscriberView>(EntEF.Context.SubscriberView.ToList());
+        List<SubscriberView> subscriberViews = new List<SubscriberView>(EntEF.Context.SubscriberView.Where(i => i.IsDeleted == false).ToList());
         public SubscriberPage()
         {
             InitializeComponent();
@@ -46,7 +46,18 @@ namespace TelephoneNetwork.Windows
 
         private void btnOpenSubscriber_Click(object sender, RoutedEventArgs e)
         {
-
+            if (lvSubscriber.SelectedItem is SubscriberView subscriber)
+            {
+                EntEF.idSubscriber = subscriber.IdSubscriber;
+                SubscriberMain subscriberMain = new SubscriberMain();
+                subscriberMain.Show();
+                lvSubscriber.ItemsSource = subscriberViews;
+            }
+            else
+            {
+                MessageBox.Show("Выберите абонента из списка.", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            lvSubscriber.ItemsSource = subscriberViews;
         }
     }
 }

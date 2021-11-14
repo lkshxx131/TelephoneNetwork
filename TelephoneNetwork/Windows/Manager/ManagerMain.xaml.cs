@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TelephoneNetwork.EF;
 
 namespace TelephoneNetwork.Windows.Manager
 {
@@ -22,6 +23,12 @@ namespace TelephoneNetwork.Windows.Manager
         public ManagerMain()
         {
             InitializeComponent();
+
+            //var employee = EntEF.Context.Employee.Where(i => i.IdEmployee == EntEF.idEmployee).FirstOrDefault();
+            //string LName = employee.LastName;
+            //string FName = employee.FirstName;
+            //tbkLastNameManager.Text = LName;
+            //tbkFirstNameManager.Text = FName;
         }
 
         private void btnSubscriber_Click(object sender, RoutedEventArgs e)
@@ -39,6 +46,11 @@ namespace TelephoneNetwork.Windows.Manager
             SignWindow signWindow = new SignWindow();
             signWindow.Show();
             this.Close();
+        }
+
+        private void btnCalls_Click(object sender, RoutedEventArgs e)
+        {
+            frmManager.Navigate(new CallsManagerPage());
         }
     }
 }

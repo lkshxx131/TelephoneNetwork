@@ -9,7 +9,7 @@
       d:DesignHeight="690"
       Background="#F1FFFB"
       Title="TariffManagerPage">
-
+     
     <Grid>
         <Button x:Name="btnBack"
                 Content="Назад"

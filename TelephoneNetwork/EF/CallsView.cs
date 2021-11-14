@@ -12,18 +12,19 @@ namespace TelephoneNetwork.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class Direction
+    public partial class CallsView
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Direction()
-        {
-            this.Calls = new HashSet<Calls>();
-        }
-    
-        public string DirectionCode { get; set; }
-        public string DirectionName { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Calls> Calls { get; set; }
+        public int IdNumber { get; set; }
+        public int IdSubscriber { get; set; }
+        public string NumberName { get; set; }
+        public System.DateTime RegDate { get; set; }
+        public Nullable<int> IdTariffPlan { get; set; }
+        public decimal Balance { get; set; }
+        public string StatusCode { get; set; }
+        public int IdCalls { get; set; }
+        public int IdInNumber { get; set; }
+        public System.DateTime CallsDate { get; set; }
+        public int DurationInMinute { get; set; }
+        public int IdOutNumber { get; set; }
     }
 }

@@ -14,12 +14,6 @@ namespace TelephoneNetwork.EF
     
     public partial class Employee
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Employee()
-        {
-            this.Number = new HashSet<Number>();
-        }
-    
         public int IdEmployee { get; set; }
         public int IdPosition { get; set; }
         public string LastName { get; set; }
@@ -34,7 +28,5 @@ namespace TelephoneNetwork.EF
     
         public virtual Gender Gender { get; set; }
         public virtual Position Position { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Number> Number { get; set; }
     }
 }
