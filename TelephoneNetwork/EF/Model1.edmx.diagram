@@ -4,22 +4,25 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bea6888d91b94c28811470036b7c96de" Name="Diagram1" ZoomLevel="28">
+      <Diagram DiagramId="bea6888d91b94c28811470036b7c96de" Name="Diagram1" ZoomLevel="29">
         <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.Benefit" Width="1.5" PointX="3.75" PointY="1.125" />
         <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.Calls" Width="1.5" PointX="10.5" PointY="4.875" />
         <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.Employee" Width="1.5" PointX="3" PointY="4.25" />
         <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.Gender" Width="1.5" PointX="0.75" PointY="5.125" />
-        <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.Number" Width="1.5" PointX="8.25" PointY="4.5" />
+        <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.Number" Width="1.5" PointX="8.25" PointY="4.375" />
         <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.Position" Width="1.5" PointX="0.75" PointY="2.125" />
-        <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.Status" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.Status" Width="1.5" PointX="6" PointY="9.625" />
         <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.Subscriber" Width="1.5" PointX="6" PointY="3.875" />
         <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.sysdiagrams" Width="1.5" PointX="8.75" PointY="1.25" />
-        <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.TariffPlan" Width="1.5" PointX="6" PointY="9.125" />
-        <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.CallsView" Width="1.5" PointX="0.75" PointY="9.25" />
-        <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.NumberView" Width="1.5" PointX="2.75" PointY="9.25" />
-        <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.SubscriberView" Width="1.5" PointX="8.75" PointY="9.25" />
+        <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.TariffPlan" Width="1.5" PointX="6" PointY="0.75" />
+        <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.CallsInView" Width="1.5" PointX="0.75" PointY="9.25" />
+        <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.CallsOutView" Width="1.5" PointX="2.75" PointY="9.25" />
+        <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.CallsView" Width="1.5" PointX="8.75" PointY="9.25" />
+        <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.NumberView" Width="1.5" PointX="10.75" PointY="8.25" />
+        <EntityTypeShape EntityType="SubscribersTelephoneNetworkModel.SubscriberView" Width="1.5" PointX="0.75" PointY="12.25" />
         <AssociationConnector Association="SubscribersTelephoneNetworkModel.FK_Subscriber_Benefit" />
-        <AssociationConnector Association="SubscribersTelephoneNetworkModel.FK_Calls_Number" />
+        <AssociationConnector Association="SubscribersTelephoneNetworkModel.FK_Calls_NumberIn" />
+        <AssociationConnector Association="SubscribersTelephoneNetworkModel.FK_Calls_NumberOut" />
         <AssociationConnector Association="SubscribersTelephoneNetworkModel.FK_Employee_Gender" />
         <AssociationConnector Association="SubscribersTelephoneNetworkModel.FK_Employee_Position" />
         <AssociationConnector Association="SubscribersTelephoneNetworkModel.FK_Subscriber_Gender" />

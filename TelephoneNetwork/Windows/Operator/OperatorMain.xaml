@@ -26,15 +26,13 @@
                        Margin="93 62 93 25"/>
 
             <WrapPanel HorizontalAlignment="Center">
-                <TextBlock Text="Скоробей"
-                       x:Name="tbkLastNameOperator"
-                       Style="{StaticResource TextBlockMain}"
-                       FontSize="24"/>
-                <TextBlock Text="Анастасия"
-                       x:Name="tbkFirstNameOperator"
-                       Style="{StaticResource TextBlockMain}"
-                       FontSize="24"
-                       Margin="10 0 0 0"/>
+                <TextBlock x:Name="tbkLastNameOperator"
+                           Style="{StaticResource TextBlockMain}"
+                           FontSize="24"/>
+                <TextBlock x:Name="tbkFirstNameOperator"
+                           Style="{StaticResource TextBlockMain}"
+                           FontSize="24"
+                           Margin="10 0 0 0"/>
             </WrapPanel>
 
             <Button x:Name="btnSubscriber"

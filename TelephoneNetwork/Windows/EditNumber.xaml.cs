@@ -43,7 +43,9 @@ namespace TelephoneNetwork.Windows
             tariff.IdTariffPlan = EntEF.Context.TariffPlan.Where(i => i.TariffName == cmbTariffPlan.SelectedItem.ToString()).Select(i => i.IdTariffPlan).FirstOrDefault();
 
             EntEF.Context.SaveChanges();
-            MessageBox.Show("Тариф изменен", "Изменение тарифа", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Тариф изменен", "Изменение тарифа",
+                       MessageBoxButton.OK, MessageBoxImage.Information);
+
             this.Close();
         }
     }

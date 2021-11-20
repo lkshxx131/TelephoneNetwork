@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TelephoneNetwork.EF;
+using TelephoneNetwork.ClassHelper;
 
 namespace TelephoneNetwork.Windows.Operator
 {
@@ -22,6 +24,14 @@ namespace TelephoneNetwork.Windows.Operator
         public OperatorMain()
         {
             InitializeComponent();
+
+            var employee = EntEF.Context.Employee.Where(i => i.IdEmployee == ClassUserId.Instance.idEmployee).FirstOrDefault();
+
+            string LName = employee.LastName;
+            string FName = employee.FirstName;
+
+            tbkLastNameOperator.Text = LName;
+            tbkFirstNameOperator.Text = FName;
         }
 
         private void btnSubscriber_Click(object sender, RoutedEventArgs e)
@@ -37,6 +47,7 @@ namespace TelephoneNetwork.Windows.Operator
         {
             SignWindow signWindow = new SignWindow();
             signWindow.Show();
+
             this.Close();
         }
     }

@@ -19,11 +19,20 @@
             <Setter Property="Background" Value="#F1FFFB"/>
             <Setter Property="BorderBrush" Value="#5BF3C8"/>
             <Setter Property="BorderThickness" Value="3"/>
-            <Setter Property="Foreground" Value="#5BF3C8"/>
+            <Setter Property="Foreground" Value="#54C0A2"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
             <Setter Property="FontSize" Value="40"/>
             <Setter Property="Width" Value="350"/>
             <Setter Property="Height" Value="60"/>
+        </Style>
+
+        <Style TargetType="ComboBox">
+            <Setter Property="Background" Value="#F1FFFB"/>
+            <Setter Property="BorderBrush" Value="#5BF3C8"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Foreground" Value="#54C0A2"/>
+            <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+            <Setter Property="FontSize" Value="18"/>
         </Style>
 
         <Style TargetType="PasswordBox" x:Key="PasswordBoxSign">
@@ -61,6 +70,12 @@
             <Setter Property="Foreground" Value="#F1FFFB"/>
             <Setter Property="BorderBrush" Value="#5BF3C8"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
+        </Style>
+
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="#54C0A2"/>
+            <Setter Property="FontSize" Value="16"/>
         </Style>
 
     </Application.Resources>

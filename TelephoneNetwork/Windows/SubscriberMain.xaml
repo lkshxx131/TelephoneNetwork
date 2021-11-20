@@ -34,7 +34,9 @@
                              FontSize="18"
                              Width="200"
                              Height="30"
-                             Margin="0 10 0 0"/>
+                             Margin="0 10 0 0"
+                             PreviewTextInput ="txbLastName_PreviewTextInput"
+                             LostFocus="txbLastName_LostFocus"/>
                 </StackPanel>
 
                 <StackPanel Margin="30 0 0 0">
@@ -49,7 +51,9 @@
                              FontSize="18"
                              Width="200"
                              Height="30"
-                             Margin="0 10 0 0"/>
+                             Margin="0 10 0 0"
+                             PreviewTextInput ="txbFirstName_PreviewTextInput"
+                             LostFocus="txbFirstName_LostFocus"/>
                 </StackPanel>
 
                 <StackPanel Margin="30 0 0 0">
@@ -64,7 +68,8 @@
                              FontSize="18"
                              Width="200"
                              Height="30"
-                             Margin="0 10 0 0"/>
+                             Margin="0 10 0 0"
+                             PreviewTextInput ="txbPatronymic_PreviewTextInput"/>
                 </StackPanel>
 
                 <StackPanel Margin="30 0 0 0">
@@ -73,10 +78,6 @@
                                Style="{StaticResource TextBlockSign}"
                                FontSize="18"/>
                     <ComboBox x:Name="cmbGender"
-                              Foreground="#5BF3C8"
-                              Background="#F1FFFB"
-                              BorderBrush="#5BF3C8"
-                              FontSize="18"
                               HorizontalAlignment="Left"
                               Width="150"
                               Height="30"
@@ -94,7 +95,7 @@
                                 HorizontalAlignment="Left"
                                 Background="#F1FFFB"
                                 BorderBrush="#5BF3C8"
-                                Foreground="#5BF3C8"
+                                Foreground="#54C0A2"
                                 BorderThickness="2"
                                 FontSize="16"
                                 Width="200"
@@ -113,7 +114,8 @@
                              FontSize="18"
                              Width="200"
                              Height="30"
-                             Margin="0 10 0 0"/>
+                             Margin="0 10 0 0"
+                             PreviewTextInput="txbEmail_PreviewTextInput"/>
                 </StackPanel>
 
                 <StackPanel Margin="30 20 0 0">
@@ -128,7 +130,8 @@
                              FontSize="18"
                              Width="380"
                              Height="30"
-                             Margin="0 10 0 0"/>
+                             Margin="0 10 0 0"
+                             PreviewTextInput="txbAddress_PreviewTextInput"/>
                 </StackPanel>
             </WrapPanel>
 
@@ -145,7 +148,9 @@
                              FontSize="18"
                              Width="135"
                              Height="30"
-                             Margin="0 10 0 0"/>
+                             Margin="0 10 0 0"
+                             PreviewTextInput ="txbSeriesPassport_PreviewTextInput"
+                             LostFocus="txbSeriesPassport_LostFocus"/>
                 </StackPanel>
 
                 <StackPanel Margin="30 20 0 0">
@@ -160,14 +165,12 @@
                              Width="200"
                              Height="30"
                              BorderThickness="2"
-                             Margin="0 10 0 0"/>
+                             Margin="0 10 0 0"
+                             PreviewTextInput ="txbNumberPassport_PreviewTextInput"
+                             LostFocus="txbNumberPassport_LostFocus"/>
                 </StackPanel>
 
                 <ComboBox x:Name="cmbBenefit"
-                          Foreground="#5BF3C8"
-                          Background="#F1FFFB"
-                          BorderBrush="#5BF3C8"
-                          FontSize="18"
                           HorizontalAlignment="Left"
                           Width="150"
                           Height="30"
@@ -180,7 +183,8 @@
                          FontSize="18"
                          Width="265"
                          Height="30"
-                         Margin="30 50 0 0"/>
+                         Margin="30 50 0 0"
+                         PreviewTextInput ="txbBenefitCertificate_PreviewTextInput"/>
             </WrapPanel>
 
             <WrapPanel Margin="0 30 0 0">
@@ -206,13 +210,13 @@
                        HorizontalAlignment="Left"
                        Style="{StaticResource TextBlockSign}"
                        FontSize="20"
-                       Margin="0 30 0 0"/>
+                       Margin="0 20 0 0"/>
 
             <WrapPanel>
                 <ListView x:Name="lvSubscriberNumber"
                       HorizontalAlignment="Left"
                       Foreground="#5BF3C8"
-                      Width="550"
+                      Width="600"
                       Height="200"
                       Margin="0 0 0 0">
                     <ListView.View>
@@ -222,7 +226,7 @@
                             <GridViewColumn
                             Header="Тариф" Width="150" DisplayMemberBinding="{Binding TariffName}"/>
                             <GridViewColumn
-                            Header="Дата регистрации" Width="150" DisplayMemberBinding="{Binding RegDate}"/>
+                            Header="Дата регистрации" Width="200" DisplayMemberBinding="{Binding RegDate}"/>
                             <GridViewColumn
                             Header="Баланс" Width="120" DisplayMemberBinding="{Binding Balance}"/>
                         </GridView>
@@ -235,23 +239,35 @@
                             Style="{StaticResource ButtonBig}"
                             FontSize="16"
                             Width="150"
-                            Height="30" Click="AddNumber_Click"/>
+                            Height="30"
+                            Click="AddNumber_Click"/>
                     <Button x:Name="EditTariff"
                             Content="Изменить тариф"
                             Style="{StaticResource ButtonBig}"
                             FontSize="16"
                             Width="150"
                             Height="30"
-                            Margin="0 10 0 0" Click="EditTariff_Click"/>
+                            Margin="0 10 0 0"
+                            Click="EditTariff_Click"/>
                     <Button x:Name="OffNumber"
                             Content="Отключить номер"
                             Style="{StaticResource ButtonBig}"
                             FontSize="16"
                             Width="150"
                             Height="30"
-                            Margin="0 30 0 0" Click="OffNumber_Click"/>
+                            Margin="0 30 0 0"
+                            Click="OffNumber_Click"/>
                 </StackPanel>
             </WrapPanel>
         </StackPanel>
+        <Button x:Name="btnClose"
+                Content="Закрыть"
+                Foreground="#5BF3C8"
+                FontSize="24"
+                Style="{StaticResource ButtonSmall}"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Margin="45 0 0 65"
+                Click="btnClose_Click"/>
     </Grid>
 </Window>

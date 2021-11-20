@@ -13,12 +13,12 @@
     <Grid>
         <Button x:Name="btnBack"
                 Content="Назад"
-                Width="200"
-                Height="40"
+                Width="150"
+                Height="35"
                 Style="{StaticResource ButtonBig}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Margin="20 20"
+                Margin="20 30"
                 Click="btnBack_Click"/>
 
         <ListView x:Name="lvTariffPlan"
@@ -38,29 +38,29 @@
         </ListView>
         <Button x:Name="btnAddTariff"
                 Content="Добавить"
-                Width="200"
-                Height="40"
+                Width="150"
+                Height="35"
                 Style="{StaticResource ButtonBig}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
-                Margin="20 20 0 30"
+                Margin="20 20 0 40"
                 Click="btnAddTariff_Click"/>
         <Button x:Name="btnEditTariff"
                 Content="Редактировать"
-                Width="200"
-                Height="40"
+                Width="170"
+                Height="35"
                 Style="{StaticResource ButtonBig}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
-                Margin="250 20 0 30"
+                Margin="200 20 0 40"
                 Click="btnEditTariff_Click"/>
         <Button x:Name="btnDeleteTariff"
                 Content="Удалить"
-                Width="Auto"
-                Height="40"
+                Width="150"
+                Height="35"
                 Style="{StaticResource ButtonBig}"
                 VerticalAlignment="Bottom"
-                Margin="600 0 20 30"
+                Margin="600 0 20 40"
                 Click="btnDeleteTariff_Click"/>
     </Grid>
 </Page>

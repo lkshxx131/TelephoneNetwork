@@ -35,32 +35,77 @@ namespace TelephoneNetwork.Windows.Manager
         {
             this.Close();
         }
-
-        private void txbNameTariff_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void txbDescriptionTariff_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
-        private void txbCostTariff_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
-
         private void SaveTariff_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txbNameTariff.Text) ||
+               string.IsNullOrWhiteSpace(txbCostTariff.Text))
+            {
+                MessageBox.Show("Обязательные поля не заполнены", "Уведомление",
+                           MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                return;
+            }
+
+            if (txbNameTariff.Text.Length > 60)
+            {
+                MessageBox.Show("Название тарифа превышает допустимую длину (60 символов)",
+                           "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                return;
+            }
+
             var tariffPlans = EntEF.Context.TariffPlan.Where(i => i.IdTariffPlan == EntEF.idTariff).FirstOrDefault();
             tariffPlans.TariffName = txbNameTariff.Text;
             tariffPlans.Description = txbDescriptionTariff.Text;
             tariffPlans.Cost = Convert.ToDecimal(txbCostTariff.Text);
 
             EntEF.Context.SaveChanges();
-            MessageBox.Show("Изменения сохранены", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Изменения сохранены", "Уведомление",
+                MessageBoxButton.OK, MessageBoxImage.Information);
+
             this.Close();
+        }
+
+        private void txbNameTariff_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //запрет на ввод всего, кроме букв и пробелов
+            e.Handled = (!Char.IsLetter(e.Text, 0));
+        }
+        private void txbDescriptionTariff_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Можно вводить буквы, цифры, спец.символы
+            e.Handled = (!Char.IsLetter(e.Text, 0) && !(Char.IsDigit(e.Text, 0))) && ".,".IndexOf(e.Text) < 0;
+        }
+        private void txbCostTariff_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Запрет на ввод всего, кроме цифр
+            e.Handled = !(Char.IsDigit(e.Text, 0));
+        }
+
+        private void txbNameTariff_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txbNameTariff.Text))
+            {
+                txbNameTariff.BorderBrush = Brushes.Red;
+            }
+
+            else
+            {
+                txbNameTariff.BorderBrush = Brushes.Aquamarine;
+            }
+        }
+
+        private void txbCostTariff_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txbCostTariff.Text))
+            {
+                txbCostTariff.BorderBrush = Brushes.Red;
+            }
+
+            else
+            {
+                txbCostTariff.BorderBrush = Brushes.Aquamarine;
+            }
         }
     }
 }

@@ -18,6 +18,7 @@ namespace TelephoneNetwork.EF
         public Number()
         {
             this.Calls = new HashSet<Calls>();
+            this.Calls1 = new HashSet<Calls>();
         }
     
         public int IdNumber { get; set; }
@@ -30,6 +31,8 @@ namespace TelephoneNetwork.EF
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Calls> Calls { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Calls> Calls1 { get; set; }
         public virtual Status Status { get; set; }
         public virtual Subscriber Subscriber { get; set; }
         public virtual TariffPlan TariffPlan { get; set; }

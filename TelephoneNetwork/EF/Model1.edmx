@@ -19,9 +19,9 @@
           </Key>
           <Property Name="IdCalls" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="IdInNumber" Type="int" Nullable="false" />
+          <Property Name="IdOutNumber" Type="int" Nullable="false" />
           <Property Name="CallsDate" Type="date" Nullable="false" />
           <Property Name="DurationInMinute" Type="int" Nullable="false" />
-          <Property Name="IdOutNumber" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -88,7 +88,7 @@
           <Property Name="PassportNumber" Type="nchar" MaxLength="6" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="150" />
           <Property Name="RegDate" Type="date" Nullable="false" />
-          <Property Name="BenefitCode" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="BenefitCode" Type="nchar" MaxLength="1" />
           <Property Name="BenefitCertififcate" Type="nchar" MaxLength="10" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
@@ -113,33 +113,44 @@
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "SubscribersTelephoneNetwork.dbo.CallsInView" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="CallsInView">
+          <Key>
+            <PropertyRef Name="IdInNumber" />
+            <PropertyRef Name="NumberName" />
+            <PropertyRef Name="IdCalls" />
+          </Key>
+          <Property Name="IdInNumber" Type="int" Nullable="false" />
+          <Property Name="NumberName" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="IdCalls" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "SubscribersTelephoneNetwork.dbo.CallsOutView" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="CallsOutView">
+          <Key>
+            <PropertyRef Name="IdOutNumber" />
+            <PropertyRef Name="NumberName" />
+            <PropertyRef Name="IdCalls" />
+          </Key>
+          <Property Name="IdOutNumber" Type="int" Nullable="false" />
+          <Property Name="NumberName" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="IdCalls" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "SubscribersTelephoneNetwork.dbo.CallsView" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
         <EntityType Name="CallsView">
           <Key>
-            <PropertyRef Name="IdNumber" />
-            <PropertyRef Name="IdSubscriber" />
-            <PropertyRef Name="NumberName" />
-            <PropertyRef Name="RegDate" />
-            <PropertyRef Name="Balance" />
-            <PropertyRef Name="StatusCode" />
+            <PropertyRef Name="NumberIn" />
+            <PropertyRef Name="NumberOut" />
             <PropertyRef Name="IdCalls" />
-            <PropertyRef Name="IdInNumber" />
             <PropertyRef Name="CallsDate" />
             <PropertyRef Name="DurationInMinute" />
-            <PropertyRef Name="IdOutNumber" />
           </Key>
-          <Property Name="IdNumber" Type="int" Nullable="false" />
-          <Property Name="IdSubscriber" Type="int" Nullable="false" />
-          <Property Name="NumberName" Type="nvarchar" MaxLength="11" Nullable="false" />
-          <Property Name="RegDate" Type="date" Nullable="false" />
-          <Property Name="IdTariffPlan" Type="int" />
-          <Property Name="Balance" Type="decimal" Precision="10" Scale="2" Nullable="false" />
-          <Property Name="StatusCode" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="NumberIn" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="NumberOut" Type="nvarchar" MaxLength="11" Nullable="false" />
           <Property Name="IdCalls" Type="int" Nullable="false" />
-          <Property Name="IdInNumber" Type="int" Nullable="false" />
           <Property Name="CallsDate" Type="date" Nullable="false" />
           <Property Name="DurationInMinute" Type="int" Nullable="false" />
-          <Property Name="IdOutNumber" Type="int" Nullable="false" />
         </EntityType>
         <!--Ошибки, обнаруженные при создании:
 предупреждение 6002: В таблице или представлении "SubscribersTelephoneNetwork.dbo.NumberView" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
@@ -201,7 +212,7 @@
           <Property Name="BenefitCertififcate" Type="nchar" MaxLength="10" />
           <Property Name="IsDeleted" Type="bit" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Calls_Number">
+        <Association Name="FK_Calls_NumberIn">
           <End Role="Number" Type="Self.Number" Multiplicity="1" />
           <End Role="Calls" Type="Self.Calls" Multiplicity="*" />
           <ReferentialConstraint>
@@ -210,6 +221,18 @@
             </Principal>
             <Dependent Role="Calls">
               <PropertyRef Name="IdInNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calls_NumberOut">
+          <End Role="Number" Type="Self.Number" Multiplicity="1" />
+          <End Role="Calls" Type="Self.Calls" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Number">
+              <PropertyRef Name="IdNumber" />
+            </Principal>
+            <Dependent Role="Calls">
+              <PropertyRef Name="IdOutNumber" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -274,7 +297,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Subscriber_Benefit">
-          <End Role="Benefit" Type="Self.Benefit" Multiplicity="1" />
+          <End Role="Benefit" Type="Self.Benefit" Multiplicity="0..1" />
           <End Role="Subscriber" Type="Self.Subscriber" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Benefit">
@@ -339,20 +362,27 @@
           <EntitySet Name="Subscriber" EntityType="Self.Subscriber" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TariffPlan" EntityType="Self.TariffPlan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CallsInView" EntityType="Self.CallsInView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CallsInView].[IdInNumber] AS [IdInNumber], 
+    [CallsInView].[NumberName] AS [NumberName], 
+    [CallsInView].[IdCalls] AS [IdCalls]
+    FROM [dbo].[CallsInView] AS [CallsInView]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="CallsOutView" EntityType="Self.CallsOutView" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [CallsOutView].[IdOutNumber] AS [IdOutNumber], 
+    [CallsOutView].[NumberName] AS [NumberName], 
+    [CallsOutView].[IdCalls] AS [IdCalls]
+    FROM [dbo].[CallsOutView] AS [CallsOutView]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="CallsView" EntityType="Self.CallsView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [CallsView].[IdNumber] AS [IdNumber], 
-    [CallsView].[IdSubscriber] AS [IdSubscriber], 
-    [CallsView].[NumberName] AS [NumberName], 
-    [CallsView].[RegDate] AS [RegDate], 
-    [CallsView].[IdTariffPlan] AS [IdTariffPlan], 
-    [CallsView].[Balance] AS [Balance], 
-    [CallsView].[StatusCode] AS [StatusCode], 
+    [CallsView].[NumberIn] AS [NumberIn], 
+    [CallsView].[NumberOut] AS [NumberOut], 
     [CallsView].[IdCalls] AS [IdCalls], 
-    [CallsView].[IdInNumber] AS [IdInNumber], 
     [CallsView].[CallsDate] AS [CallsDate], 
-    [CallsView].[DurationInMinute] AS [DurationInMinute], 
-    [CallsView].[IdOutNumber] AS [IdOutNumber]
+    [CallsView].[DurationInMinute] AS [DurationInMinute]
     FROM [dbo].[CallsView] AS [CallsView]</DefiningQuery>
           </EntitySet>
           <EntitySet Name="NumberView" EntityType="Self.NumberView" store:Type="Views" store:Schema="dbo">
@@ -390,7 +420,11 @@
     [SubscriberView].[IsDeleted] AS [IsDeleted]
     FROM [dbo].[SubscriberView] AS [SubscriberView]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK_Calls_Number" Association="Self.FK_Calls_Number">
+          <AssociationSet Name="FK_Calls_NumberIn" Association="Self.FK_Calls_NumberIn">
+            <End Role="Number" EntitySet="Number" />
+            <End Role="Calls" EntitySet="Calls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calls_NumberOut" Association="Self.FK_Calls_NumberOut">
             <End Role="Number" EntitySet="Number" />
             <End Role="Calls" EntitySet="Calls" />
           </AssociationSet>
@@ -468,6 +502,8 @@
           <EntitySet Name="Subscriber" EntityType="SubscribersTelephoneNetworkModel.Subscriber" />
           <EntitySet Name="sysdiagrams" EntityType="SubscribersTelephoneNetworkModel.sysdiagrams" />
           <EntitySet Name="TariffPlan" EntityType="SubscribersTelephoneNetworkModel.TariffPlan" />
+          <EntitySet Name="CallsInView" EntityType="SubscribersTelephoneNetworkModel.CallsInView" />
+          <EntitySet Name="CallsOutView" EntityType="SubscribersTelephoneNetworkModel.CallsOutView" />
           <EntitySet Name="CallsView" EntityType="SubscribersTelephoneNetworkModel.CallsView" />
           <EntitySet Name="NumberView" EntityType="SubscribersTelephoneNetworkModel.NumberView" />
           <EntitySet Name="SubscriberView" EntityType="SubscribersTelephoneNetworkModel.SubscriberView" />
@@ -475,7 +511,11 @@
             <End Role="Benefit" EntitySet="Benefit" />
             <End Role="Subscriber" EntitySet="Subscriber" />
           </AssociationSet>
-          <AssociationSet Name="FK_Calls_Number" Association="SubscribersTelephoneNetworkModel.FK_Calls_Number">
+          <AssociationSet Name="FK_Calls_NumberIn" Association="SubscribersTelephoneNetworkModel.FK_Calls_NumberIn">
+            <End Role="Number" EntitySet="Number" />
+            <End Role="Calls" EntitySet="Calls" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calls_NumberOut" Association="SubscribersTelephoneNetworkModel.FK_Calls_NumberOut">
             <End Role="Number" EntitySet="Number" />
             <End Role="Calls" EntitySet="Calls" />
           </AssociationSet>
@@ -530,10 +570,11 @@
           </Key>
           <Property Name="IdCalls" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="IdInNumber" Type="Int32" Nullable="false" />
+          <Property Name="IdOutNumber" Type="Int32" Nullable="false" />
           <Property Name="CallsDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DurationInMinute" Type="Int32" Nullable="false" />
-          <Property Name="IdOutNumber" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Number" Relationship="SubscribersTelephoneNetworkModel.FK_Calls_Number" FromRole="Calls" ToRole="Number" />
+          <NavigationProperty Name="Number" Relationship="SubscribersTelephoneNetworkModel.FK_Calls_NumberIn" FromRole="Calls" ToRole="Number" />
+          <NavigationProperty Name="Number1" Relationship="SubscribersTelephoneNetworkModel.FK_Calls_NumberOut" FromRole="Calls" ToRole="Number" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -573,7 +614,8 @@
           <Property Name="IdTariffPlan" Type="Int32" />
           <Property Name="Balance" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
           <Property Name="StatusCode" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
-          <NavigationProperty Name="Calls" Relationship="SubscribersTelephoneNetworkModel.FK_Calls_Number" FromRole="Number" ToRole="Calls" />
+          <NavigationProperty Name="Calls" Relationship="SubscribersTelephoneNetworkModel.FK_Calls_NumberIn" FromRole="Number" ToRole="Calls" />
+          <NavigationProperty Name="Calls1" Relationship="SubscribersTelephoneNetworkModel.FK_Calls_NumberOut" FromRole="Number" ToRole="Calls" />
           <NavigationProperty Name="Status" Relationship="SubscribersTelephoneNetworkModel.FK_Number_Status" FromRole="Number" ToRole="Status" />
           <NavigationProperty Name="Subscriber" Relationship="SubscribersTelephoneNetworkModel.FK_Number_Subscriber" FromRole="Number" ToRole="Subscriber" />
           <NavigationProperty Name="TariffPlan" Relationship="SubscribersTelephoneNetworkModel.FK_Number_TariffPlan" FromRole="Number" ToRole="TariffPlan" />
@@ -610,7 +652,7 @@
           <Property Name="PassportNumber" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="BenefitCode" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="BenefitCode" Type="String" MaxLength="1" FixedLength="true" Unicode="true" />
           <Property Name="BenefitCertififcate" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Benefit" Relationship="SubscribersTelephoneNetworkModel.FK_Subscriber_Benefit" FromRole="Subscriber" ToRole="Benefit" />
@@ -638,32 +680,39 @@
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Number" Relationship="SubscribersTelephoneNetworkModel.FK_Number_TariffPlan" FromRole="TariffPlan" ToRole="Number" />
         </EntityType>
+        <EntityType Name="CallsInView">
+          <Key>
+            <PropertyRef Name="IdInNumber" />
+            <PropertyRef Name="NumberName" />
+            <PropertyRef Name="IdCalls" />
+          </Key>
+          <Property Name="IdInNumber" Type="Int32" Nullable="false" />
+          <Property Name="NumberName" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="IdCalls" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CallsOutView">
+          <Key>
+            <PropertyRef Name="IdOutNumber" />
+            <PropertyRef Name="NumberName" />
+            <PropertyRef Name="IdCalls" />
+          </Key>
+          <Property Name="IdOutNumber" Type="Int32" Nullable="false" />
+          <Property Name="NumberName" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="IdCalls" Type="Int32" Nullable="false" />
+        </EntityType>
         <EntityType Name="CallsView">
           <Key>
-            <PropertyRef Name="IdNumber" />
-            <PropertyRef Name="IdSubscriber" />
-            <PropertyRef Name="NumberName" />
-            <PropertyRef Name="RegDate" />
-            <PropertyRef Name="Balance" />
-            <PropertyRef Name="StatusCode" />
+            <PropertyRef Name="NumberIn" />
+            <PropertyRef Name="NumberOut" />
             <PropertyRef Name="IdCalls" />
-            <PropertyRef Name="IdInNumber" />
             <PropertyRef Name="CallsDate" />
             <PropertyRef Name="DurationInMinute" />
-            <PropertyRef Name="IdOutNumber" />
           </Key>
-          <Property Name="IdNumber" Type="Int32" Nullable="false" />
-          <Property Name="IdSubscriber" Type="Int32" Nullable="false" />
-          <Property Name="NumberName" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
-          <Property Name="RegDate" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="IdTariffPlan" Type="Int32" />
-          <Property Name="Balance" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-          <Property Name="StatusCode" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="NumberIn" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOut" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="true" />
           <Property Name="IdCalls" Type="Int32" Nullable="false" />
-          <Property Name="IdInNumber" Type="Int32" Nullable="false" />
           <Property Name="CallsDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="DurationInMinute" Type="Int32" Nullable="false" />
-          <Property Name="IdOutNumber" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="NumberView">
           <Key>
@@ -722,7 +771,7 @@
           <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK_Subscriber_Benefit">
-          <End Type="SubscribersTelephoneNetworkModel.Benefit" Role="Benefit" Multiplicity="1" />
+          <End Type="SubscribersTelephoneNetworkModel.Benefit" Role="Benefit" Multiplicity="0..1" />
           <End Type="SubscribersTelephoneNetworkModel.Subscriber" Role="Subscriber" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Benefit">
@@ -733,7 +782,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Calls_Number">
+        <Association Name="FK_Calls_NumberIn">
           <End Type="SubscribersTelephoneNetworkModel.Number" Role="Number" Multiplicity="1" />
           <End Type="SubscribersTelephoneNetworkModel.Calls" Role="Calls" Multiplicity="*" />
           <ReferentialConstraint>
@@ -742,6 +791,18 @@
             </Principal>
             <Dependent Role="Calls">
               <PropertyRef Name="IdInNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calls_NumberOut">
+          <End Type="SubscribersTelephoneNetworkModel.Number" Role="Number" Multiplicity="1" />
+          <End Type="SubscribersTelephoneNetworkModel.Calls" Role="Calls" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Number">
+              <PropertyRef Name="IdNumber" />
+            </Principal>
+            <Dependent Role="Calls">
+              <PropertyRef Name="IdOutNumber" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -859,9 +920,9 @@
           <EntitySetMapping Name="Calls">
             <EntityTypeMapping TypeName="SubscribersTelephoneNetworkModel.Calls">
               <MappingFragment StoreEntitySet="Calls">
-                <ScalarProperty Name="IdOutNumber" ColumnName="IdOutNumber" />
                 <ScalarProperty Name="DurationInMinute" ColumnName="DurationInMinute" />
                 <ScalarProperty Name="CallsDate" ColumnName="CallsDate" />
+                <ScalarProperty Name="IdOutNumber" ColumnName="IdOutNumber" />
                 <ScalarProperty Name="IdInNumber" ColumnName="IdInNumber" />
                 <ScalarProperty Name="IdCalls" ColumnName="IdCalls" />
               </MappingFragment>
@@ -964,21 +1025,32 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CallsInView">
+            <EntityTypeMapping TypeName="SubscribersTelephoneNetworkModel.CallsInView">
+              <MappingFragment StoreEntitySet="CallsInView">
+                <ScalarProperty Name="IdCalls" ColumnName="IdCalls" />
+                <ScalarProperty Name="NumberName" ColumnName="NumberName" />
+                <ScalarProperty Name="IdInNumber" ColumnName="IdInNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CallsOutView">
+            <EntityTypeMapping TypeName="SubscribersTelephoneNetworkModel.CallsOutView">
+              <MappingFragment StoreEntitySet="CallsOutView">
+                <ScalarProperty Name="IdCalls" ColumnName="IdCalls" />
+                <ScalarProperty Name="NumberName" ColumnName="NumberName" />
+                <ScalarProperty Name="IdOutNumber" ColumnName="IdOutNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CallsView">
             <EntityTypeMapping TypeName="SubscribersTelephoneNetworkModel.CallsView">
               <MappingFragment StoreEntitySet="CallsView">
-                <ScalarProperty Name="IdOutNumber" ColumnName="IdOutNumber" />
                 <ScalarProperty Name="DurationInMinute" ColumnName="DurationInMinute" />
                 <ScalarProperty Name="CallsDate" ColumnName="CallsDate" />
-                <ScalarProperty Name="IdInNumber" ColumnName="IdInNumber" />
                 <ScalarProperty Name="IdCalls" ColumnName="IdCalls" />
-                <ScalarProperty Name="StatusCode" ColumnName="StatusCode" />
-                <ScalarProperty Name="Balance" ColumnName="Balance" />
-                <ScalarProperty Name="IdTariffPlan" ColumnName="IdTariffPlan" />
-                <ScalarProperty Name="RegDate" ColumnName="RegDate" />
-                <ScalarProperty Name="NumberName" ColumnName="NumberName" />
-                <ScalarProperty Name="IdSubscriber" ColumnName="IdSubscriber" />
-                <ScalarProperty Name="IdNumber" ColumnName="IdNumber" />
+                <ScalarProperty Name="NumberOut" ColumnName="NumberOut" />
+                <ScalarProperty Name="NumberIn" ColumnName="NumberIn" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

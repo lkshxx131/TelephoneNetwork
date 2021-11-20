@@ -12,15 +12,10 @@ namespace TelephoneNetwork.EF
     using System;
     using System.Collections.Generic;
     
-    public partial class Calls
+    public partial class CallsInView
     {
-        public int IdCalls { get; set; }
         public int IdInNumber { get; set; }
-        public int IdOutNumber { get; set; }
-        public System.DateTime CallsDate { get; set; }
-        public int DurationInMinute { get; set; }
-    
-        public virtual Number Number { get; set; }
-        public virtual Number Number1 { get; set; }
+        public string NumberName { get; set; }
+        public int IdCalls { get; set; }
     }
 }

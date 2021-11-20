@@ -30,9 +30,9 @@
                            Style="{StaticResource TextBlockMain}"
                            FontSize="24"/>
                 <TextBlock x:Name="tbkFirstNameManager"
-                          Style="{StaticResource TextBlockMain}"
-                          FontSize="24"
-                          Margin="10 0 0 0"/>
+                           Style="{StaticResource TextBlockMain}"
+                           FontSize="24"
+                           Margin="10 0 0 0"/>
             </WrapPanel>
 
             <Button x:Name="btnSubscriber"

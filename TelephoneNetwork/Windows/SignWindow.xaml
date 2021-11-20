@@ -37,6 +37,7 @@
                        Margin="0 300 0 15"
                        Style="{StaticResource TextBlockSign}"/>
             <TextBox x:Name="txbLogin"
+                     Foreground="#5BF3C8"
                      Style="{StaticResource TextBoxSign}"/>
             <TextBlock Text="Введите пароль:"
                        HorizontalAlignment="Left"

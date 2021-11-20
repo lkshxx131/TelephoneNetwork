@@ -14,17 +14,10 @@ namespace TelephoneNetwork.EF
     
     public partial class CallsView
     {
-        public int IdNumber { get; set; }
-        public int IdSubscriber { get; set; }
-        public string NumberName { get; set; }
-        public System.DateTime RegDate { get; set; }
-        public Nullable<int> IdTariffPlan { get; set; }
-        public decimal Balance { get; set; }
-        public string StatusCode { get; set; }
+        public string NumberIn { get; set; }
+        public string NumberOut { get; set; }
         public int IdCalls { get; set; }
-        public int IdInNumber { get; set; }
         public System.DateTime CallsDate { get; set; }
         public int DurationInMinute { get; set; }
-        public int IdOutNumber { get; set; }
     }
 }

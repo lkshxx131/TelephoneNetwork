@@ -37,6 +37,8 @@ namespace TelephoneNetwork.EF
         public virtual DbSet<Subscriber> Subscriber { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TariffPlan> TariffPlan { get; set; }
+        public virtual DbSet<CallsInView> CallsInView { get; set; }
+        public virtual DbSet<CallsOutView> CallsOutView { get; set; }
         public virtual DbSet<CallsView> CallsView { get; set; }
         public virtual DbSet<NumberView> NumberView { get; set; }
         public virtual DbSet<SubscriberView> SubscriberView { get; set; }

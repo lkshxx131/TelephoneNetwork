@@ -13,10 +13,6 @@
         Title="Изменение тарифа">
     <Grid>
         <ComboBox x:Name="cmbTariffPlan"
-                  Foreground="#5BF3C8"
-                  Background="#F1FFFB"
-                  BorderBrush="#5BF3C8"
-                  FontSize="18"
                   HorizontalAlignment="Center"
                   VerticalAlignment="Top"
                   Margin="0 30 0 0"

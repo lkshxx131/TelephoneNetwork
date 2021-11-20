@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TelephoneNetwork.EF;
+using TelephoneNetwork.ClassHelper;
+
 
 namespace TelephoneNetwork.Windows.Manager
 {
@@ -24,11 +26,13 @@ namespace TelephoneNetwork.Windows.Manager
         {
             InitializeComponent();
 
-            //var employee = EntEF.Context.Employee.Where(i => i.IdEmployee == EntEF.idEmployee).FirstOrDefault();
-            //string LName = employee.LastName;
-            //string FName = employee.FirstName;
-            //tbkLastNameManager.Text = LName;
-            //tbkFirstNameManager.Text = FName;
+            var employee = EntEF.Context.Employee.Where(i => i.IdEmployee == ClassUserId.Instance.idEmployee).FirstOrDefault();
+
+            string LName = employee.LastName;
+            string FName = employee.FirstName;
+
+            tbkLastNameManager.Text = LName;
+            tbkFirstNameManager.Text = FName;
         }
 
         private void btnSubscriber_Click(object sender, RoutedEventArgs e)

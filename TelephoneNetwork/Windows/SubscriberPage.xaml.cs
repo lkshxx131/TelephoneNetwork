@@ -51,12 +51,16 @@ namespace TelephoneNetwork.Windows
                 EntEF.idSubscriber = subscriber.IdSubscriber;
                 SubscriberMain subscriberMain = new SubscriberMain();
                 subscriberMain.Show();
+
                 lvSubscriber.ItemsSource = subscriberViews;
             }
+
             else
             {
-                MessageBox.Show("Выберите абонента из списка.", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Выберите абонента из списка.", "Уведомление",
+                           MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+
             lvSubscriber.ItemsSource = subscriberViews;
         }
     }

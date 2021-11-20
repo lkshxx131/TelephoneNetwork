@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TelephoneNetwork.Windows.Manager;
 using TelephoneNetwork.Windows.Operator;
+using TelephoneNetwork.EF;
+using TelephoneNetwork.ClassHelper;
 
 namespace TelephoneNetwork.Windows
 {
@@ -28,30 +30,33 @@ namespace TelephoneNetwork.Windows
 
         private void btnSign_Click(object sender, RoutedEventArgs e)
         {
-            var user = EF.EntEF.Context.Employee.Where(i => i.Login == txbLogin.Text && i.Password == psbPassword.Password).FirstOrDefault();
+            var user = EntEF.Context.Employee.Where(i => i.Login == txbLogin.Text && i.Password == psbPassword.Password).FirstOrDefault();
 
             if (txbLogin.ToString() != "" && psbPassword.ToString() != "" && user != null)
             {
+                ClassUserId.Instance.idEmployee = user.IdEmployee;
                 switch (user.IdPosition)
                 {
                     case 1:
                         ManagerMain managerMain = new ManagerMain();
                         managerMain.Show();
                         this.Close();
+
                         break;
 
                     case 2:
                         OperatorMain operatorMain = new OperatorMain();
                         operatorMain.Show();
                         this.Close();
+
                         break;
                 }
             }
 
             else
-                {
-                    MessageBox.Show("Введенные данные неккоректны", "Ошибка");
-                }
+            {
+                MessageBox.Show("Введенные данные неккоректны", "Ошибка");
+            }
             
         }
 

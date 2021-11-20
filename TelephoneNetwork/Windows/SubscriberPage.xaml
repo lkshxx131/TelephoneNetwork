@@ -13,13 +13,34 @@
     <Grid>
         <Button x:Name="btnBack"
                 Content="Назад"
-                Width="200"
-                Height="40"
+                Width="150"
+                Height="35"
                 Style="{StaticResource ButtonBig}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Margin="20 20"
+                Margin="20 30"
                 Click="btnBack_Click"/>
+
+        <WrapPanel HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Margin="20 30">
+            <TextBox x:Name="txbSearch"
+                     Width="200"
+                     Height="35"
+                     BorderThickness="2"
+                     Style="{StaticResource TextBoxSign}"/>
+            <ComboBox x:Name="cmbFiltration"
+                      Width="150"
+                      Foreground="#5BF3C8"
+                      Background="#F1FFFB"
+                      BorderBrush="#5BF3C8"
+                      Margin="15 0 15 0"/>
+            <ComboBox x:Name="cmbSorting"
+                      Foreground="#5BF3C8"
+                      Background="#F1FFFB"
+                      BorderBrush="#5BF3C8"
+                      Width="150"/>
+        </WrapPanel>
 
         <ListView x:Name="lvSubscriber"
                   Width="825"
@@ -29,39 +50,39 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn
-                        Header="Фамилия" Width="130" DisplayMemberBinding="{Binding LastName}"/>
+                        Header="Фамилия" Width="120" DisplayMemberBinding="{Binding LastName}"/>
                     <GridViewColumn
-                        Header="Имя" Width="130" DisplayMemberBinding="{Binding FirstName}"/>
+                        Header="Имя" Width="120" DisplayMemberBinding="{Binding FirstName}"/>
                     <GridViewColumn
-                        Header="Отчество" Width="130" DisplayMemberBinding="{Binding Patronymic}"/>
+                        Header="Отчество" Width="120" DisplayMemberBinding="{Binding Patronymic}"/>
                     <GridViewColumn
-                        Header="Пол" Width="50" DisplayMemberBinding="{Binding GenderCode}"/>
+                        Header="Пол" Width="45" DisplayMemberBinding="{Binding GenderCode}"/>
                     <GridViewColumn
-                        Header="Серия паспорта" Width="110" DisplayMemberBinding="{Binding PassportSeries}"/>
+                        Header="Серия паспорта" Width="100" DisplayMemberBinding="{Binding PassportSeries}"/>
                     <GridViewColumn
                         Header="Номер паспорта" Width="110" DisplayMemberBinding="{Binding PassportNumber}"/>
                     <GridViewColumn
-                        Header="Дата регистрации" Width="150" DisplayMemberBinding="{Binding RegDate}"/>
+                        Header="Дата регистрации" Width="200" DisplayMemberBinding="{Binding RegDate}"/>
                 </GridView>
             </ListView.View>
         </ListView>
         <Button x:Name="btnAddSubscriber"
                 Content="Добавить"
-                Width="200"
-                Height="40"
+                Width="150"
+                Height="35"
                 Style="{StaticResource ButtonBig}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
-                Margin="20 20 0 30"
+                Margin="20 20 0 40"
                 Click="btnAddSubscriber_Click"/>
         <Button x:Name="btnOpenSubscriber"
                 Content="Открыть"
-                Width="200"
-                Height="40"
+                Width="150"
+                Height="35"
                 Style="{StaticResource ButtonBig}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
-                Margin="250 20 0 30"
+                Margin="200 20 0 40"
                 Click="btnOpenSubscriber_Click"/>
     </Grid>
 </Page>

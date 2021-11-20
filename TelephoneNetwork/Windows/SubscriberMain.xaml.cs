@@ -48,6 +48,43 @@ namespace TelephoneNetwork.Windows
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txbLastName.Text) ||
+               string.IsNullOrWhiteSpace(txbFirstName.Text) ||
+               string.IsNullOrWhiteSpace(txbSeriesPassport.Text) ||
+               string.IsNullOrWhiteSpace(txbNumberPassport.Text))
+            {
+                MessageBox.Show("Обязательные поля не заполнены", "Уведомление",
+                           MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(cmbGender.Text) ||
+                string.IsNullOrWhiteSpace(cmbBenefit.Text))
+            {
+                MessageBox.Show("Выдвижные списки не заполнены(Пол/льгота)", "Уведомление",
+                           MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                return;
+            }
+
+            if (txbLastName.Text.Length > 50 && txbFirstName.Text.Length > 50 && txbPatronymic.Text.Length > 50
+                && txbEmail.Text.Length > 100 && txbAddress.Text.Length > 150)
+            {
+                MessageBox.Show("Введенные данные превышают допустимую длину",
+                           "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                return;
+            }
+
+            if (txbSeriesPassport.Text.Length != 4 && txbNumberPassport.Text.Length != 6)
+            {
+                MessageBox.Show("Введенные данные не соответствуют допустимым значениям (серия/номер паспорта)",
+                           "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                return;
+            }
+
             var subscriber = EntEF.Context.Subscriber.Where(i => i.IdSubscriber == EntEF.idSubscriber).FirstOrDefault();
             subscriber.LastName = txbLastName.Text;
             subscriber.FirstName = txbFirstName.Text;
@@ -62,21 +99,27 @@ namespace TelephoneNetwork.Windows
             subscriber.BenefitCertififcate = txbBenefitCertificate.Text;
 
             EntEF.Context.SaveChanges();
-            MessageBox.Show("Изменения сохранены", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Изменения сохранены", "Уведомление",
+                       MessageBoxButton.OK, MessageBoxImage.Information);
+
             this.Close();
         }
 
         private void OffSubscriber_Click(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show("Отключить абонента?", "Отключение абонента", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            var result = MessageBox.Show("Отключить абонента?", "Отключение абонента",
+                         MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
                 var subscriber = EntEF.Context.Subscriber.Where(i => i.IdSubscriber == EntEF.idSubscriber).FirstOrDefault();
                 subscriber.IsDeleted = true;
-                EntEF.Context.SaveChanges();
-                MessageBox.Show("Абонент успешно отключен", "Отключение абонента", MessageBoxButton.OK, MessageBoxImage.Information);
 
-            }    
+                EntEF.Context.SaveChanges();
+                MessageBox.Show("Абонент успешно отключен", "Отключение абонента",
+                           MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
+            this.Close();
         }
 
         private void AddNumber_Click(object sender, RoutedEventArgs e)
@@ -93,15 +136,18 @@ namespace TelephoneNetwork.Windows
                 EditNumber editNumber = new EditNumber();
                 editNumber.Show();
             }
+
             else
             {
-                MessageBox.Show("Выберите номер из списка.", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Выберите номер из списка.", "Уведомление",
+                           MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
         private void OffNumber_Click(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show("Отключить номер?", "Отключение номера", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            var result = MessageBox.Show("Отключить номер?", "Отключение номера",
+                         MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.Yes)
             {
                 if (lvSubscriberNumber.SelectedItem is NumberView numberView)
@@ -109,16 +155,126 @@ namespace TelephoneNetwork.Windows
                     EntEF.idNumber = numberView.IdNumber;
                     var number = EntEF.Context.Number.Where(i => i.IdNumber == EntEF.idNumber).FirstOrDefault();
                     number.StatusCode = "н";
+
                     EntEF.Context.SaveChanges();
-                    MessageBox.Show("Номер успешно отключен", "Отключение номера", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Номер успешно отключен", "Отключение номера",
+                               MessageBoxButton.OK, MessageBoxImage.Information);
+
                     lvSubscriberNumber.ItemsSource = numberViews;
                 }
+
                 else
                 {
-                    MessageBox.Show("Выберите номер из списка", "Отключение номера", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Выберите номер из списка", "Отключение номера",
+                               MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
+
                 lvSubscriberNumber.ItemsSource = numberViews;
             }
-        }  
+        }
+
+        private void txbLastName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //запрет на ввод всего, кроме букв и пробелов
+            e.Handled = (!Char.IsLetter(e.Text, 0));
+        }
+        private void txbFirstName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //запрет на ввод всего, кроме букв и пробелов
+            e.Handled = (!Char.IsLetter(e.Text, 0));
+        }
+
+        private void txbPatronymic_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //запрет на ввод всего, кроме букв и пробелов
+            e.Handled = (!Char.IsLetter(e.Text, 0));
+        }
+
+        private void txbSeriesPassport_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Запрет на ввод всего, кроме цифр
+            e.Handled = !(Char.IsDigit(e.Text, 0));
+        }
+
+        private void txbNumberPassport_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Запрет на ввод всего, кроме цифр
+            e.Handled = !(Char.IsDigit(e.Text, 0));
+        }
+
+        private void txbBenefitCertificate_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Запрет на ввод всего, кроме цифр
+            e.Handled = !(Char.IsDigit(e.Text, 0));
+        }
+
+        private void txbEmail_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Можно вводить буквы, цифры, спец.символы
+            e.Handled = (!Char.IsLetter(e.Text, 0) && !(Char.IsDigit(e.Text, 0))) && "@.".IndexOf(e.Text) < 0;
+        }
+
+        private void txbAddress_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Можно вводить буквы, цифры, спец.символы
+            e.Handled = (!Char.IsLetter(e.Text, 0) && !(Char.IsDigit(e.Text, 0))) && ".,".IndexOf(e.Text) < 0;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void txbLastName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txbLastName.Text))
+            {
+                txbLastName.BorderBrush = Brushes.Red;
+            }
+
+            else
+            {
+                txbLastName.BorderBrush = Brushes.Aquamarine;
+            }
+        }
+
+        private void txbFirstName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txbFirstName.Text))
+            {
+                txbFirstName.BorderBrush = Brushes.Red;
+            }
+
+            else
+            {
+                txbFirstName.BorderBrush = Brushes.Aquamarine;
+            }
+        }
+
+        private void txbSeriesPassport_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txbSeriesPassport.Text))
+            {
+                txbSeriesPassport.BorderBrush = Brushes.Red;
+            }
+
+            else
+            {
+                txbSeriesPassport.BorderBrush = Brushes.Aquamarine;
+            }
+        }
+
+        private void txbNumberPassport_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txbNumberPassport.Text))
+            {
+                txbNumberPassport.BorderBrush = Brushes.Red;
+            }
+
+            else
+            {
+                txbNumberPassport.BorderBrush = Brushes.Aquamarine;
+            }
+        }
     }
 }

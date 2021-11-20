@@ -50,29 +50,36 @@ namespace TelephoneNetwork.Windows.Manager
                 EntEF.idTariff = tariffPlans.IdTariffPlan;
                 EditTariff editTariff = new EditTariff();
                 editTariff.Show();
+
                 lvTariffPlan.ItemsSource = EntEF.Context.TariffPlan.ToList();
             }
             else
             {
-                MessageBox.Show("Выберите тариф из списка.", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Выберите тариф из списка.", "Уведомление",
+                           MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
         private void btnDeleteTariff_Click(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show("Удалить выбранный тариф?", "Удаление тарифа", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            var result = MessageBox.Show("Удалить выбранный тариф?", "Удаление тарифа",
+                         MessageBoxButton.YesNo, MessageBoxImage.Question);
+
             if (result == MessageBoxResult.Yes)
             {
                 if(lvTariffPlan.SelectedItem is TariffPlan tariffPlan)
                 {
                     tariffPlan.IsDeleted = true;
                     EntEF.Context.SaveChanges();
-                    MessageBox.Show("Тариф успешно удален", "Удаление тарифа", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Тариф успешно удален", "Удаление тарифа",
+                               MessageBoxButton.OK, MessageBoxImage.Information);
                     lvTariffPlan.ItemsSource = EntEF.Context.TariffPlan.ToList();
                 }
+
                 else
                 {
-                    MessageBox.Show("Выберите тариф из списка", "Удаление трифа", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show("Выберите тариф из списка", "Удаление трифа",
+                               MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             }
         }
