@@ -25,7 +25,7 @@ namespace TelephoneNetwork.Windows.Operator
         public TariffOperatorPage()
         {
             InitializeComponent();
-            lvTariffPlan.ItemsSource = tariffPlans;
+            lvTariffPlan.ItemsSource = tariffPlans.Where(i => i.IsDeleted == false);
         }
 
         private void lvTariffPlan_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -36,6 +36,18 @@ namespace TelephoneNetwork.Windows.Operator
         private void btnBack_Click(object sender, RoutedEventArgs e)
         {
             Content = null;
+        }
+
+        private void txbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var list = EntEF.Context.TariffPlan.Where(i => i.IsDeleted != true).ToList();
+
+            lvTariffPlan.ItemsSource = list.Where(i => i.TariffName.ToLower().Contains(txbSearch.Text.ToLower()));
+
+            if (txbSearch.Text == "")
+            {
+                lvTariffPlan.ItemsSource = tariffPlans;
+            }
         }
     }
 }

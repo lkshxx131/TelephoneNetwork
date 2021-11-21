@@ -32,7 +32,7 @@
             <Setter Property="BorderThickness" Value="1"/>
             <Setter Property="Foreground" Value="#54C0A2"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
-            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontSize" Value="20"/>
         </Style>
 
         <Style TargetType="PasswordBox" x:Key="PasswordBoxSign">

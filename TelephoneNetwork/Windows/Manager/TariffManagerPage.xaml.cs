@@ -83,5 +83,17 @@ namespace TelephoneNetwork.Windows.Manager
                 }
             }
         }
+
+        private void txbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var list = EntEF.Context.TariffPlan.Where(i => i.IsDeleted != true).ToList();
+
+            lvTariffPlan.ItemsSource = list.Where(i => i.TariffName.ToLower().Contains(txbSearch.Text.ToLower()));
+
+            if (txbSearch.Text == "")
+            {
+                lvTariffPlan.ItemsSource = tariffPlans;
+            }
+        }
     }
 }

@@ -26,6 +26,13 @@ namespace TelephoneNetwork.Windows
         {
             InitializeComponent();
             lvSubscriber.ItemsSource = subscriberViews;
+
+            List<Gender> genders = EntEF.Context.Gender.ToList();
+            genders.Insert(0, new Gender() { GenderName = "Все" });
+
+            cmbGenderFiltr.ItemsSource = genders;
+            cmbGenderFiltr.DisplayMemberPath = "GenderName";
+            cmbGenderFiltr.SelectedIndex = 0;
         }
 
         private void lvSubscriber_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -62,6 +69,38 @@ namespace TelephoneNetwork.Windows
             }
 
             lvSubscriber.ItemsSource = subscriberViews;
+        }
+
+        public void Filtr()
+        {
+            var list = EntEF.Context.SubscriberView.Where(i => i.IsDeleted != true).ToList()
+                                                   .Where(i => i.LastName.ToLower().Contains(txbSearch.Text) ||
+                                                   i.FirstName.ToLower().Contains(txbSearch.Text) ||
+                                                   i.Patronymic.ToLower().Contains(txbSearch.Text)).ToList();
+
+            lvSubscriber.ItemsSource = list;
+
+            if (cmbGenderFiltr.SelectedIndex == 0)
+            {
+                lvSubscriber.ItemsSource = list;
+            }
+            else
+            {
+                var Gender = cmbGenderFiltr.SelectedItem as Gender;
+
+                list = list.Where(i => i.GenderCode == Gender.GenderCode).ToList();
+                lvSubscriber.ItemsSource = list;
+            }
+        }
+
+        private void txbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Filtr();
+        }
+
+        private void cmbFiltration_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filtr();
         }
     }
 }
