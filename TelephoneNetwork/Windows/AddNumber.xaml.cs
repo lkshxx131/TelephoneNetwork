@@ -20,10 +20,13 @@ namespace TelephoneNetwork.Windows
     /// </summary>
     public partial class AddNumber : Window
     {
-        public AddNumber()
+        SubscriberMain f;
+        public AddNumber(SubscriberMain c)
         {
             InitializeComponent();
-            cmbTariffPlan.ItemsSource = EntEF.Context.TariffPlan.Select(i => i.TariffName).ToList();
+            f = c;
+
+            cmbTariffPlan.ItemsSource = EntEF.Context.TariffPlan.Where(i => i.IsDeleted == false).Select(i => i.TariffName).ToList();
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -31,9 +34,10 @@ namespace TelephoneNetwork.Windows
             this.Close();
         }
 
-        private void SaveTariff_Click(object sender, RoutedEventArgs e)
+        private void SaveNumber_Click(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txbNumber.Text))
+            if (string.IsNullOrWhiteSpace(txbNumber.Text) ||
+                string.IsNullOrWhiteSpace(cmbTariffPlan.Text))
             {
                 MessageBox.Show("Обязательные поля не заполнены", "Уведомление",
                            MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -52,7 +56,7 @@ namespace TelephoneNetwork.Windows
             EntEF.Context.Number.Add(new Number
             {
                 NumberName = txbNumber.Text,
-                IdTariffPlan = cmbTariffPlan.SelectedIndex,
+                IdTariffPlan = EntEF.Context.TariffPlan.Where(i => i.TariffName == cmbTariffPlan.SelectedItem.ToString()).Select(i => i.IdTariffPlan).FirstOrDefault(),
                 IdSubscriber = EntEF.idSubscriber,
                 RegDate = DateTime.Now,
                 StatusCode = "а",
@@ -63,6 +67,7 @@ namespace TelephoneNetwork.Windows
             MessageBox.Show("Номер успешно добавлен", "Добавление номера",
                        MessageBoxButton.OK, MessageBoxImage.Information);
 
+            f.Update();
             this.Close();
         }
 

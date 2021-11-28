@@ -25,12 +25,14 @@ namespace TelephoneNetwork.Windows.Operator
         public TariffOperatorPage()
         {
             InitializeComponent();
-            lvTariffPlan.ItemsSource = tariffPlans.Where(i => i.IsDeleted == false);
+            Update();
         }
 
-        private void lvTariffPlan_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        public void Update()
         {
+            txbSearch.Text = null;
 
+            lvTariffPlan.ItemsSource = tariffPlans.Where(i => i.IsDeleted == false).ToList();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -42,12 +44,18 @@ namespace TelephoneNetwork.Windows.Operator
         {
             var list = EntEF.Context.TariffPlan.Where(i => i.IsDeleted != true).ToList();
 
-            lvTariffPlan.ItemsSource = list.Where(i => i.TariffName.ToLower().Contains(txbSearch.Text.ToLower()));
+            lvTariffPlan.ItemsSource = list.Where(i => i.TariffName.ToLower().Contains(txbSearch.Text) ||
+                                                  i.Description.ToLower().Contains(txbSearch.Text.ToLower()));
 
             if (txbSearch.Text == "")
             {
-                lvTariffPlan.ItemsSource = tariffPlans;
+                lvTariffPlan.ItemsSource = list;
             }
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            Update();
         }
     }
 }

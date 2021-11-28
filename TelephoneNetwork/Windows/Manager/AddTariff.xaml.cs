@@ -20,9 +20,11 @@ namespace TelephoneNetwork.Windows.Manager
     /// </summary>
     public partial class AddTariff : Window
     {
-        public AddTariff()
+        TariffManagerPage f;
+        public AddTariff(TariffManagerPage c)
         {
             InitializeComponent();
+            f = c;
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -60,6 +62,7 @@ namespace TelephoneNetwork.Windows.Manager
             MessageBox.Show("Тариф успешно добавлен", "Уведомление",
                        MessageBoxButton.OK, MessageBoxImage.Information);
 
+            f.Update();
             this.Close();
         }
 

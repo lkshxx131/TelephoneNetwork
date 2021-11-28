@@ -51,7 +51,7 @@
                     Style="{StaticResource ButtonSmall}" Click="btnCalls_Click"/>
             <Button x:Name="btnExit"
                     Content="Выход"
-                    Margin="0 60 0 30"
+                    Margin="0 60 0 20"
                     HorizontalAlignment="Center"
                     Style="{StaticResource ButtonSmall}" Click="btnExit_Click"/>
             <Image Source="LogoMainWindow.png"

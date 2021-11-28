@@ -20,9 +20,11 @@ namespace TelephoneNetwork.Windows
     /// </summary>
     public partial class AddSubscriber : Window
     {
-        public AddSubscriber()
+        SubscriberPage f;
+        public AddSubscriber(SubscriberPage c)
         {
             InitializeComponent();
+            f = c;
             cmbGender.ItemsSource = EntEF.Context.Gender.Select(i => i.GenderName).ToList();
             cmbBenefit.ItemsSource = EntEF.Context.Benefit.Select(i => i.BenefitName).ToList();
         }
@@ -53,8 +55,8 @@ namespace TelephoneNetwork.Windows
                 return;
             }
 
-            if (txbLastName.Text.Length > 50 && txbFirstName.Text.Length > 50 && txbPatronymic.Text.Length > 50
-                && txbEmail.Text.Length > 100 && txbAddress.Text.Length > 150)
+            if (txbLastName.Text.Length > 50 || txbFirstName.Text.Length > 50 || txbPatronymic.Text.Length > 50
+                || txbEmail.Text.Length > 100 || txbAddress.Text.Length > 150)
             {
                 MessageBox.Show("Введенные данные превышают допустимую длину",
                            "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -62,7 +64,7 @@ namespace TelephoneNetwork.Windows
                 return;
             }
 
-            if (txbSeriesPassport.Text.Length != 4 && txbNumberPassport.Text.Length != 6)
+            if (txbSeriesPassport.Text.Length != 4 || txbNumberPassport.Text.Length != 6)
             {
                 MessageBox.Show("Введенные данные не соответствуют допустимым значениям (серия/номер паспорта)",
                            "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -90,6 +92,8 @@ namespace TelephoneNetwork.Windows
             MessageBox.Show("Абонент успешно добавлен", "Уведомление",
                        MessageBoxButton.OK, MessageBoxImage.Information);
 
+            List<SubscriberView> subscribers = new List<SubscriberView>();
+            f.Update();
             this.Close();
         }
 

@@ -20,30 +20,36 @@ namespace TelephoneNetwork.Windows
     /// </summary>
     public partial class SubscriberMain : Window
     {
+        SubscriberPage f;
         List<NumberView> numberViews = new List<NumberView>(EntEF.Context.NumberView.Where(i => i.IdSubscriber == EntEF.idSubscriber && i.StatusCode == "а").ToList());
-        public SubscriberMain()
+        public SubscriberMain(SubscriberPage c)
         {
             InitializeComponent();
+            f = c;
             lvSubscriberNumber.ItemsSource = numberViews;
 
-            cmbBenefit.ItemsSource = EntEF.Context.Benefit.Select(i => i.BenefitName).ToList();
             cmbGender.ItemsSource = EntEF.Context.Gender.Select(i => i.GenderName).ToList();
-            
+            cmbBenefit.ItemsSource = EntEF.Context.Benefit.Select(i => i.BenefitName).ToList();
+
             var subscriber = EntEF.Context.Subscriber.Where(i => i.IdSubscriber == EntEF.idSubscriber).FirstOrDefault();
-            cmbBenefit.SelectedItem = EntEF.Context.Benefit.Where(i => i.BenefitCode == subscriber.BenefitCode).Select(i => i.BenefitName).FirstOrDefault();
             cmbGender.SelectedItem = EntEF.Context.Gender.Where(i => i.GenderCode == subscriber.GenderCode).Select(i => i.GenderName).FirstOrDefault();
+            cmbBenefit.SelectedItem = EntEF.Context.Benefit.Where(i => i.BenefitCode == subscriber.BenefitCode).Select(i => i.BenefitName).FirstOrDefault();
 
             txbLastName.Text = subscriber.LastName;
             txbFirstName.Text = subscriber.FirstName;
             txbPatronymic.Text = subscriber.Patronymic;
-            cmbGender.Text = subscriber.Gender.GenderName;
             dpBirthDate.SelectedDate = subscriber.BirthDate;
             txbEmail.Text = subscriber.Email;
             txbAddress.Text = subscriber.Address;
             txbSeriesPassport.Text = subscriber.PassportSeries;
             txbNumberPassport.Text = subscriber.PassportNumber;
-            cmbBenefit.Text = subscriber.Benefit.BenefitName;
             txbBenefitCertificate.Text = subscriber.BenefitCertififcate;
+        }
+
+        public void Update()
+        {
+            lvSubscriberNumber.ItemsSource = EntEF.Context.NumberView.Where(i => i.IdSubscriber == EntEF.idSubscriber &&
+                                                                            i.StatusCode == "а").ToList();
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
@@ -68,8 +74,8 @@ namespace TelephoneNetwork.Windows
                 return;
             }
 
-            if (txbLastName.Text.Length > 50 && txbFirstName.Text.Length > 50 && txbPatronymic.Text.Length > 50
-                && txbEmail.Text.Length > 100 && txbAddress.Text.Length > 150)
+            if (txbLastName.Text.Length > 50 || txbFirstName.Text.Length > 50 || txbPatronymic.Text.Length > 50
+                || txbEmail.Text.Length > 100 || txbAddress.Text.Length > 150)
             {
                 MessageBox.Show("Введенные данные превышают допустимую длину",
                            "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
@@ -102,7 +108,7 @@ namespace TelephoneNetwork.Windows
             MessageBox.Show("Изменения сохранены", "Уведомление",
                        MessageBoxButton.OK, MessageBoxImage.Information);
 
-            this.Close();
+            f.Update();
         }
 
         private void OffSubscriber_Click(object sender, RoutedEventArgs e)
@@ -119,13 +125,16 @@ namespace TelephoneNetwork.Windows
                            MessageBoxButton.OK, MessageBoxImage.Information);
             }
 
+            f.Update();
             this.Close();
         }
 
         private void AddNumber_Click(object sender, RoutedEventArgs e)
         {
-            AddNumber addNumber = new AddNumber();
+            AddNumber addNumber = new AddNumber(this);
             addNumber.Show();
+
+            Update();
         }
 
         private void EditTariff_Click(object sender, RoutedEventArgs e)
@@ -133,8 +142,10 @@ namespace TelephoneNetwork.Windows
             if (lvSubscriberNumber.SelectedItem is NumberView number)
             {
                 EntEF.idTariff = number.IdTariffPlan;
-                EditNumber editNumber = new EditNumber();
+                EditNumber editNumber = new EditNumber(this);
                 editNumber.Show();
+
+                Update();
             }
 
             else
@@ -142,6 +153,8 @@ namespace TelephoneNetwork.Windows
                 MessageBox.Show("Выберите номер из списка.", "Уведомление",
                            MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+
+            Update();
         }
 
         private void OffNumber_Click(object sender, RoutedEventArgs e)
@@ -160,6 +173,7 @@ namespace TelephoneNetwork.Windows
                     MessageBox.Show("Номер успешно отключен", "Отключение номера",
                                MessageBoxButton.OK, MessageBoxImage.Information);
 
+                    Update();
                     lvSubscriberNumber.ItemsSource = numberViews;
                 }
 
@@ -169,6 +183,7 @@ namespace TelephoneNetwork.Windows
                                MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
 
+                Update();
                 lvSubscriberNumber.ItemsSource = numberViews;
             }
         }

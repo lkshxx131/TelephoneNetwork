@@ -20,9 +20,11 @@ namespace TelephoneNetwork.Windows.Manager
     /// </summary>
     public partial class EditTariff : Window
     {
-        public EditTariff()
+        TariffManagerPage f;
+        public EditTariff(TariffManagerPage c)
         {
             InitializeComponent();
+            f = c;
 
             var tariffPlans = EntEF.Context.TariffPlan.Where(i => i.IdTariffPlan == EntEF.idTariff).FirstOrDefault();
 
@@ -63,6 +65,7 @@ namespace TelephoneNetwork.Windows.Manager
             MessageBox.Show("Изменения сохранены", "Уведомление",
                 MessageBoxButton.OK, MessageBoxImage.Information);
 
+            f.Update();
             this.Close();
         }
 

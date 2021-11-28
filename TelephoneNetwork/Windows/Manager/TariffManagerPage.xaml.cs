@@ -25,7 +25,13 @@ namespace TelephoneNetwork.Windows.Manager
         public TariffManagerPage()
         {
             InitializeComponent();
-            lvTariffPlan.ItemsSource = tariffPlans.Where(i => i.IsDeleted == false);
+            Update();
+        }
+        public void Update()
+        {
+            txbSearch.Text = null;
+
+            lvTariffPlan.ItemsSource = tariffPlans.Where(i => i.IsDeleted == false).ToList();
         }
 
         private void lvTariffPlan_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -39,7 +45,7 @@ namespace TelephoneNetwork.Windows.Manager
 
         private void btnAddTariff_Click(object sender, RoutedEventArgs e)
         {
-            AddTariff addTariff = new AddTariff();
+            AddTariff addTariff = new AddTariff(this);
             addTariff.Show();
         }
 
@@ -48,16 +54,18 @@ namespace TelephoneNetwork.Windows.Manager
             if (lvTariffPlan.SelectedItem is TariffPlan tariffPlans)
             {
                 EntEF.idTariff = tariffPlans.IdTariffPlan;
-                EditTariff editTariff = new EditTariff();
+                EditTariff editTariff = new EditTariff(this);
                 editTariff.Show();
 
-                lvTariffPlan.ItemsSource = EntEF.Context.TariffPlan.ToList();
+                Update();
             }
             else
             {
                 MessageBox.Show("Выберите тариф из списка.", "Уведомление",
                            MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+
+            Update();
         }
 
         private void btnDeleteTariff_Click(object sender, RoutedEventArgs e)
@@ -73,7 +81,7 @@ namespace TelephoneNetwork.Windows.Manager
                     EntEF.Context.SaveChanges();
                     MessageBox.Show("Тариф успешно удален", "Удаление тарифа",
                                MessageBoxButton.OK, MessageBoxImage.Information);
-                    lvTariffPlan.ItemsSource = EntEF.Context.TariffPlan.ToList();
+                    Update();
                 }
 
                 else
@@ -81,6 +89,8 @@ namespace TelephoneNetwork.Windows.Manager
                     MessageBox.Show("Выберите тариф из списка", "Удаление трифа",
                                MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
+
+                Update();
             }
         }
 
@@ -88,12 +98,18 @@ namespace TelephoneNetwork.Windows.Manager
         {
             var list = EntEF.Context.TariffPlan.Where(i => i.IsDeleted != true).ToList();
 
-            lvTariffPlan.ItemsSource = list.Where(i => i.TariffName.ToLower().Contains(txbSearch.Text.ToLower()));
+            lvTariffPlan.ItemsSource = list.Where(i => i.TariffName.ToLower().Contains(txbSearch.Text) ||
+                                                  i.Description.ToLower().Contains(txbSearch.Text.ToLower()));
 
             if (txbSearch.Text == "")
             {
-                lvTariffPlan.ItemsSource = tariffPlans;
+                lvTariffPlan.ItemsSource = list;
             }
+        }
+
+        private void btnUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            Update();
         }
     }
 }

@@ -20,11 +20,13 @@ namespace TelephoneNetwork.Windows
     /// </summary>
     public partial class EditNumber : Window
     {
-        public EditNumber()
+        SubscriberMain f;
+        public EditNumber(SubscriberMain c)
         {
             InitializeComponent();
+            f = c;
 
-            cmbTariffPlan.ItemsSource = EntEF.Context.TariffPlan.Select(i => i.TariffName).ToList();
+            cmbTariffPlan.ItemsSource = EntEF.Context.TariffPlan.Where(i => i.IsDeleted == false).Select(i => i.TariffName).ToList();
 
             var tariff = EntEF.Context.TariffPlan.Where(i => i.IdTariffPlan == EntEF.idTariff).FirstOrDefault();
             cmbTariffPlan.SelectedItem = EntEF.Context.TariffPlan.Where(i => i.IdTariffPlan == tariff.IdTariffPlan).Select(i => i.TariffName).FirstOrDefault();
@@ -46,6 +48,8 @@ namespace TelephoneNetwork.Windows
             MessageBox.Show("Тариф изменен", "Изменение тарифа",
                        MessageBoxButton.OK, MessageBoxImage.Information);
 
+            f.Update();
+            EntEF.idTariff = 0;
             this.Close();
         }
     }

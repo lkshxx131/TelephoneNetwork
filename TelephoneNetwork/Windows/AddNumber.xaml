@@ -49,14 +49,14 @@
                         Width="100"
                         Height="30"
                         Click="Cancel_Click"/>
-                <Button x:Name="SaveTariff"
+                <Button x:Name="SaveNumber"
                         Content="Сохранить"
                         Margin="30 0 0 0"
                         Style="{StaticResource ButtonBig}"
                         FontSize="18"
                         Width="100"
                         Height="30"
-                        Click="SaveTariff_Click"/>
+                        Click="SaveNumber_Click"/>
             </WrapPanel>
         </StackPanel>
     </Grid>
