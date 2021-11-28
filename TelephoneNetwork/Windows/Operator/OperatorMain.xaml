@@ -8,6 +8,7 @@
        Title="Оператор"
         Width="1180"
         Height="720"
+        Icon="LogoSmall.png"
         Background="#F1FFFB"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">

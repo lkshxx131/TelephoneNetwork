@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:TelephoneNetwork.Windows.Manager"
         mc:Ignorable="d"
         Title="Менеджер"
+        Icon="LogoSmall.png"
         Width="1180"
         Height="720"
         Background="#F1FFFB"

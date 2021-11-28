@@ -286,6 +286,10 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Resource Include="Windows\LogoSmall.png" />
+    <Resource Include="Windows\Operator\LogoSmall.png" />
+    <Resource Include="Windows\Manager\LogoSmall.png" />
+    <Resource Include="Resource\LogoSmall.png" />
     <Resource Include="Windows\Operator\update.png" />
     <Resource Include="Windows\Manager\update.png" />
     <Resource Include="Windows\update.png" />

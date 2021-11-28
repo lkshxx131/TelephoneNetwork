@@ -46,7 +46,7 @@ namespace TelephoneNetwork.Windows.Manager
         private void btnAddTariff_Click(object sender, RoutedEventArgs e)
         {
             AddTariff addTariff = new AddTariff(this);
-            addTariff.Show();
+            addTariff.ShowDialog();
         }
 
         private void btnEditTariff_Click(object sender, RoutedEventArgs e)
@@ -55,7 +55,7 @@ namespace TelephoneNetwork.Windows.Manager
             {
                 EntEF.idTariff = tariffPlans.IdTariffPlan;
                 EditTariff editTariff = new EditTariff(this);
-                editTariff.Show();
+                editTariff.ShowDialog();
 
                 Update();
             }

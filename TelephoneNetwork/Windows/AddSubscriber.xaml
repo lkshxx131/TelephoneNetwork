@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Width="700"
         Height="500"
+        Icon="LogoSmall.png"
         Background="#F1FFFB"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"

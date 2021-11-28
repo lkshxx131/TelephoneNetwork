@@ -132,7 +132,7 @@ namespace TelephoneNetwork.Windows
         private void AddNumber_Click(object sender, RoutedEventArgs e)
         {
             AddNumber addNumber = new AddNumber(this);
-            addNumber.Show();
+            addNumber.ShowDialog();
 
             Update();
         }
@@ -143,7 +143,7 @@ namespace TelephoneNetwork.Windows
             {
                 EntEF.idTariff = number.IdTariffPlan;
                 EditNumber editNumber = new EditNumber(this);
-                editNumber.Show();
+                editNumber.ShowDialog();
 
                 Update();
             }

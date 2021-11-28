@@ -55,10 +55,12 @@
                      TextChanged="txbSearch_TextChanged"/>
             <ComboBox x:Name="cmbGenderFiltr"
                       Width="150"
+                      Height="35"
                       FontSize="24"
                       Background="#F1FFFB"
                       BorderBrush="#5BF3C8"
-                      Margin="15 0 15 0" SelectionChanged="cmbFiltration_SelectionChanged"/>
+                      Margin="15 0 15 0"
+                      SelectionChanged="cmbFiltration_SelectionChanged"/>
         </WrapPanel>
 
         <ListView x:Name="lvSubscriber"

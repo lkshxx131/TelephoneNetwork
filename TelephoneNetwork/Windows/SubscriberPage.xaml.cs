@@ -21,19 +21,10 @@ namespace TelephoneNetwork.Windows
     /// </summary>
     public partial class SubscriberPage : Page
     {
-        //List<SubscriberView> subscriberViews = new List<SubscriberView>(EntEF.Context.SubscriberView.Where(i => i.IsDeleted == false).ToList());
         public SubscriberPage()
         {
             InitializeComponent();
             Update();
-            //lvSubscriber.ItemsSource = subscriberViews;
-
-            //List<Gender> genders = EntEF.Context.Gender.ToList();
-            //genders.Insert(0, new Gender() { GenderName = "Все" });
-
-            //cmbGenderFiltr.ItemsSource = genders;
-            //cmbGenderFiltr.DisplayMemberPath = "GenderName";
-            //cmbGenderFiltr.SelectedIndex = 0;
         }
 
         public void Update()
@@ -60,7 +51,7 @@ namespace TelephoneNetwork.Windows
         private void btnAddSubscriber_Click(object sender, RoutedEventArgs e)
         {
             AddSubscriber addSubscriber = new AddSubscriber(this);
-            addSubscriber.Show(); 
+            addSubscriber.ShowDialog(); 
         }
 
         private void btnOpenSubscriber_Click(object sender, RoutedEventArgs e)
@@ -69,7 +60,7 @@ namespace TelephoneNetwork.Windows
             {
                 EntEF.idSubscriber = subscriber.IdSubscriber;
                 SubscriberMain subscriberMain = new SubscriberMain(this);
-                subscriberMain.Show();
+                subscriberMain.ShowDialog();
 
                 Update();
             }
