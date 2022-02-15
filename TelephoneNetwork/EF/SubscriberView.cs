@@ -26,7 +26,7 @@ namespace TelephoneNetwork.EF
         public string Address { get; set; }
         public System.DateTime RegDate { get; set; }
         public string BenefitCode { get; set; }
-        public string BenefitCertififcate { get; set; }
         public bool IsDeleted { get; set; }
+        public string BenefitCertififcate { get; set; }
     }
 }

@@ -64,5 +64,10 @@ namespace TelephoneNetwork.Windows
         {
             Application.Current.Shutdown();
         }
+
+        private void txbLogin_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
     }
 }

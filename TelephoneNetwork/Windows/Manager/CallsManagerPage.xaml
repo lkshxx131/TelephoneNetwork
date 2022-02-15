@@ -19,11 +19,11 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Margin="20 30"
-                Click="btnBack_Click"/>
+                Click="btnBack_Click" Background="#FF37BFB2" BorderBrush="#FF37BFB2"/>
 
         <ListView x:Name="lvCalls"
                   Width="825"
-                  Height="500">
+                  Height="500" Foreground="#FF37BFB3">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -37,5 +37,23 @@
                 </GridView>
             </ListView.View>
         </ListView>
+
+        <!--<DataGrid>
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Входящий"  Width="195" Binding="{Binding NumberIn}"/>
+                <DataGridTextColumn Header="Исходящий"  Width="195" Binding="{Binding NumberOut}"/>
+                <DataGridTextColumn Header="Длительность"  Width="195" Binding="{Binding DurationInMinute}"/>
+                <DataGridTextColumn Header="Дата"  Width="195" Binding="{Binding CallsDate}"/>
+            </DataGrid.Columns>
+        </DataGrid>-->
+
+        <Button x:Name="btnExportCalls"
+                Content="Сохранить сводку"
+                Width="200"
+                Height="35"
+                Style="{StaticResource ButtonBig}"
+                VerticalAlignment="Bottom"
+                Margin="600 0 20 40"
+                Click="btnExportCalls_Click" Background="#FF37BFB2" BorderBrush="#FF37BFB2"/> 
     </Grid>
 </Page>

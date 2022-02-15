@@ -15,10 +15,10 @@ namespace TelephoneNetwork.EF
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class SubscribersTelephoneNetworkEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public SubscribersTelephoneNetworkEntities()
-            : base("name=SubscribersTelephoneNetworkEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     

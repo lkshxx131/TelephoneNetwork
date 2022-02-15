@@ -18,7 +18,7 @@
                 Style="{StaticResource ButtonBig}"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Margin="20 20" Click="btnBack_Click"/>
+                Margin="20 20" Click="btnBack_Click" Background="#FF37BFB3" BorderBrush="#FF37BFB3"/>
 
         <WrapPanel HorizontalAlignment="Right"
                    VerticalAlignment="Top"
@@ -26,7 +26,7 @@
             <TextBlock Text="Поиск"
                    FontSize="16"
                    Margin="0 0 155 0"
-                   Style="{StaticResource TextBlockSign}"/>
+                   Style="{StaticResource TextBlockSign}" Foreground="#FF37BFB3"/>
         </WrapPanel>
 
         <WrapPanel HorizontalAlignment="Right"
@@ -47,13 +47,13 @@
                      BorderThickness="2"
                      FontSize="18"
                      Style="{StaticResource TextBoxSign}"
-                     TextChanged="txbSearch_TextChanged"/>
+                     TextChanged="txbSearch_TextChanged" BorderBrush="#FF37BFB3" Foreground="#FF37BFB3"/>
         </WrapPanel>
 
         <ListView x:Name="lvTariffPlan"
                   Width="825"
                   Height="500"
-                  Foreground="#5BF3C8">
+                  Foreground="#FF37BFB3">
             <ListView.View>
                 <GridView>
                     <GridViewColumn

@@ -25,7 +25,7 @@ namespace TelephoneNetwork.EF
         public int IdSubscriber { get; set; }
         public string NumberName { get; set; }
         public System.DateTime RegDate { get; set; }
-        public Nullable<int> IdTariffPlan { get; set; }
+        public int IdTariffPlan { get; set; }
         public decimal Balance { get; set; }
         public string StatusCode { get; set; }
     

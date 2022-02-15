@@ -22,7 +22,10 @@ namespace TelephoneNetwork.EF
     
         public int IdTariffPlan { get; set; }
         public string TariffName { get; set; }
-        public string Description { get; set; }
+        public string CallsByTariff { get; set; }
+        public string SMSMMSByTariff { get; set; }
+        public string InternetByTariff { get; set; }
+        public string Description { get => CallsByTariff + ", " + SMSMMSByTariff + ", " + InternetByTariff; }
         public decimal Cost { get; set; }
         public bool IsDeleted { get; set; }
     

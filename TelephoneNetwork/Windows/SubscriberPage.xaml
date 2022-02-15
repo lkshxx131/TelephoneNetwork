@@ -19,7 +19,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Margin="20,30,0,0"
-                Click="btnBack_Click"/>
+                Click="btnBack_Click" Background="#FF37BFB3" BorderBrush="#FF37BFB3"/>
 
         <WrapPanel HorizontalAlignment="Right"
                    VerticalAlignment="Top"
@@ -27,11 +27,11 @@
             <TextBlock Text="Поиск"
                    FontSize="16"
                    Margin="0 0 175 0"
-                   Style="{StaticResource TextBlockSign}"/>
+                   Style="{StaticResource TextBlockSign}" Foreground="#FF37BFB3"/>
             <TextBlock Text="Пол"
                    FontSize="16"
                    Margin="0 0 140 0"
-                   Style="{StaticResource TextBlockSign}"/>
+                   Style="{StaticResource TextBlockSign}" Foreground="#FF37BFB3"/>
         </WrapPanel>
 
         <WrapPanel HorizontalAlignment="Right"
@@ -52,21 +52,21 @@
                      BorderThickness="2"
                      FontSize="22"
                      Style="{StaticResource TextBoxSign}"
-                     TextChanged="txbSearch_TextChanged"/>
+                     TextChanged="txbSearch_TextChanged" BorderBrush="#FF37BFB3" Foreground="#FF37BFB3"/>
             <ComboBox x:Name="cmbGenderFiltr"
                       Width="150"
                       Height="35"
                       FontSize="24"
                       Background="#F1FFFB"
-                      BorderBrush="#5BF3C8"
+                      BorderBrush="#FF37BFB3"
                       Margin="15 0 15 0"
-                      SelectionChanged="cmbFiltration_SelectionChanged"/>
+                      SelectionChanged="cmbFiltration_SelectionChanged" Foreground="#FF37BFB3"/>
         </WrapPanel>
 
         <ListView x:Name="lvSubscriber"
                   Width="825"
                   Height="500"
-                  Foreground="#5BF3C8" Margin="0,95,-0.2,94.6">
+                  Foreground="#FF37BFB3" Margin="0,95,-0.2,94.6">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -94,7 +94,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
                 Margin="20,0,0,39.6"
-                Click="btnAddSubscriber_Click"/>
+                Click="btnAddSubscriber_Click" Background="#FF37BFB3" BorderBrush="#FF37BFB3"/>
         <Button x:Name="btnOpenSubscriber"
                 Content="Открыть"
                 Width="150"
@@ -103,6 +103,6 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
                 Margin="200,0,0,39.6"
-                Click="btnOpenSubscriber_Click"/>
+                Click="btnOpenSubscriber_Click" BorderBrush="#FF37BFB3" Background="#FF37BFB3"/>
     </Grid>
 </Page>

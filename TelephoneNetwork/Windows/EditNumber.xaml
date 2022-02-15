@@ -18,7 +18,7 @@
                   VerticalAlignment="Top"
                   Margin="0 30 0 0"
                   Width="250"
-                  Height="30"/>
+                  Height="30" BorderBrush="#FF37BFB3" Foreground="#FF37BFB3"/>
         <WrapPanel HorizontalAlignment="Center"
                    Margin="0 80 0 0">
             <Button x:Name="Cancel"
@@ -27,7 +27,7 @@
                     FontSize="18"
                     Width="100"
                     Height="30"
-                    Click="Cancel_Click"/>
+                    Click="Cancel_Click" BorderBrush="#FF37BFB3" Background="#FF37BFB3"/>
             <Button x:Name="SaveTariff"
                     Content="Сохранить"
                     Margin="40 0 0 0"
@@ -35,7 +35,7 @@
                     FontSize="18"
                     Width="100"
                     Height="30"
-                    Click="SaveTariff_Click"/>
+                    Click="SaveTariff_Click" Background="#FF37BFB3" BorderBrush="#FF37BFB3"/>
         </WrapPanel>
 
     </Grid>

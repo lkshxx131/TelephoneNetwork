@@ -54,7 +54,9 @@ namespace TelephoneNetwork.Windows.Manager
             EntEF.Context.TariffPlan.Add(new TariffPlan
             {
                 TariffName = txbNameTariff.Text,
-                Description = txbDescriptionTariff.Text,
+                CallsByTariff = txbCallsTariff.Text,
+                SMSMMSByTariff = txbSMSMMSTariff.Text,
+                InternetByTariff = txbInternetTariff.Text,
                 Cost = Convert.ToDecimal(txbCostTariff.Text)
             });
 
@@ -108,6 +110,21 @@ namespace TelephoneNetwork.Windows.Manager
             {
                 txbCostTariff.BorderBrush = Brushes.Aquamarine;
             }
+        }
+
+        private void txbCallsTariff_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
+        }
+
+        private void txbSMSMMSTariff_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
+        }
+
+        private void txbInternetTariff_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
         }
     }
 }

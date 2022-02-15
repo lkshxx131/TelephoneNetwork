@@ -14,7 +14,7 @@ namespace TelephoneNetwork.EF
     
     public partial class CallsInView
     {
-        public int IdInNumber { get; set; }
+        public int IdIn { get; set; }
         public string NumberName { get; set; }
         public int IdCalls { get; set; }
     }

@@ -29,7 +29,9 @@ namespace TelephoneNetwork.Windows.Manager
             var tariffPlans = EntEF.Context.TariffPlan.Where(i => i.IdTariffPlan == EntEF.idTariff).FirstOrDefault();
 
             txbNameTariff.Text = tariffPlans.TariffName;
-            txbDescriptionTariff.Text = tariffPlans.Description;
+            txbCallsTariff.Text = tariffPlans.CallsByTariff;
+            txbSMSMMSTariff.Text = tariffPlans.SMSMMSByTariff;
+            txbInternetTariff.Text = tariffPlans.InternetByTariff;
             txbCostTariff.Text = tariffPlans.Cost.ToString();
         }
 
@@ -58,7 +60,9 @@ namespace TelephoneNetwork.Windows.Manager
 
             var tariffPlans = EntEF.Context.TariffPlan.Where(i => i.IdTariffPlan == EntEF.idTariff).FirstOrDefault();
             tariffPlans.TariffName = txbNameTariff.Text;
-            tariffPlans.Description = txbDescriptionTariff.Text;
+            tariffPlans.CallsByTariff = txbCallsTariff.Text;
+            tariffPlans.SMSMMSByTariff = txbSMSMMSTariff.Text;
+            tariffPlans.InternetByTariff = txbInternetTariff.Text;
             tariffPlans.Cost = Convert.ToDecimal(txbCostTariff.Text);
 
             EntEF.Context.SaveChanges();
@@ -74,11 +78,11 @@ namespace TelephoneNetwork.Windows.Manager
             //запрет на ввод всего, кроме букв и пробелов
             e.Handled = (!Char.IsLetter(e.Text, 0));
         }
-        private void txbDescriptionTariff_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            //Можно вводить буквы, цифры, спец.символы
-            e.Handled = (!Char.IsLetter(e.Text, 0) && !(Char.IsDigit(e.Text, 0))) && ".,".IndexOf(e.Text) < 0;
-        }
+        //private void txbDescriptionTariff_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        //{
+        //    //Можно вводить буквы, цифры, спец.символы
+        //    e.Handled = (!Char.IsLetter(e.Text, 0) && !(Char.IsDigit(e.Text, 0))) && ".,".IndexOf(e.Text) < 0;
+        //}
         private void txbCostTariff_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             //Запрет на ввод всего, кроме цифр
@@ -109,6 +113,24 @@ namespace TelephoneNetwork.Windows.Manager
             {
                 txbCostTariff.BorderBrush = Brushes.Aquamarine;
             }
+        }
+
+        private void txbCallsTariff_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Можно вводить буквы, цифры, спец.символы
+            e.Handled = (!Char.IsLetter(e.Text, 0) && !(Char.IsDigit(e.Text, 0))) && ".,".IndexOf(e.Text) < 0;
+        }
+
+        private void txbSMSMMSTariff_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Можно вводить буквы, цифры, спец.символы
+            e.Handled = (!Char.IsLetter(e.Text, 0) && !(Char.IsDigit(e.Text, 0))) && ".,".IndexOf(e.Text) < 0;
+        }
+
+        private void txbInternetTariff_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            //Можно вводить буквы, цифры, спец.символы
+            e.Handled = (!Char.IsLetter(e.Text, 0) && !(Char.IsDigit(e.Text, 0))) && ".,".IndexOf(e.Text) < 0;
         }
     }
 }

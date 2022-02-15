@@ -16,5 +16,5 @@ namespace TelephoneNetwork.ClassHelper
         private static readonly Lazy<ClassUserId> instance = new Lazy<ClassUserId>(() => new ClassUserId());
         public static ClassUserId Instance { get { return instance.Value; } }
         public int idEmployee { get; set; }
-   }
+    }
 }

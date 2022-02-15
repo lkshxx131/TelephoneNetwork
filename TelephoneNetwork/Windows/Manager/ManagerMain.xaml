@@ -9,12 +9,12 @@
         Icon="LogoSmall.png"
         Width="1180"
         Height="720"
-        Background="#F1FFFB"
+        Background="White"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
     
     <Grid>
-        <Rectangle Fill="#5BF3C8"
+        <Rectangle Fill="#FF37BFB2"
                        Width="350"
                        Height="690"
                     HorizontalAlignment="Left"/>
@@ -59,7 +59,7 @@
                    Width="140"
                    Height="122"
                    HorizontalAlignment="Center"/>
-            <TextBlock Text="NetworkGreen"
+            <TextBlock Text="SeaNetwork"
                        HorizontalAlignment="Center"
                        Style="{StaticResource TextBlockMain}"
                        FontSize="36"/>

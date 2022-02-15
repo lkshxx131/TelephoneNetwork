@@ -19,7 +19,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Margin="20 30"
-                Click="btnBack_Click"/>
+                Click="btnBack_Click" Background="#FF37BFB2" BorderBrush="#FF37BFB2"/>
 
         <WrapPanel HorizontalAlignment="Right"
                    VerticalAlignment="Top"
@@ -27,7 +27,7 @@
             <TextBlock Text="Поиск"
                    FontSize="16"
                    Margin="0 0 155 0"
-                   Style="{StaticResource TextBlockSign}"/>
+                   Style="{StaticResource TextBlockSign}" Foreground="#FF37BFB2"/>
         </WrapPanel>
         
         <WrapPanel HorizontalAlignment="Right"
@@ -48,14 +48,14 @@
                      BorderThickness="2"
                      FontSize="22"
                      Style="{StaticResource TextBoxSign}"
-                     TextChanged="txbSearch_TextChanged"/>
+                     TextChanged="txbSearch_TextChanged" BorderBrush="#FF37BFB2" Foreground="#FF37BFB2"/>
         </WrapPanel>
 
 
         <ListView x:Name="lvTariffPlan"
                   Width="825"
                   Height="500"
-                  Foreground="#5BF3C8" SelectionChanged="lvTariffPlan_SelectionChanged">
+                  Foreground="#FF37BFB2" SelectionChanged="lvTariffPlan_SelectionChanged">
             <ListView.View>
                 <GridView>
                     <GridViewColumn
@@ -75,7 +75,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
                 Margin="20 20 0 40"
-                Click="btnAddTariff_Click"/>
+                Click="btnAddTariff_Click" Background="#FF37BFB2" BorderBrush="#FF37BFB2"/>
         <Button x:Name="btnEditTariff"
                 Content="Редактировать"
                 Width="170"
@@ -84,7 +84,7 @@
                 HorizontalAlignment="Left"
                 VerticalAlignment="Bottom"
                 Margin="200 20 0 40"
-                Click="btnEditTariff_Click"/>
+                Click="btnEditTariff_Click" BorderBrush="#FF37BFB2" Background="#FF37BFB2"/>
         <Button x:Name="btnDeleteTariff"
                 Content="Удалить"
                 Width="150"
@@ -92,6 +92,6 @@
                 Style="{StaticResource ButtonBig}"
                 VerticalAlignment="Bottom"
                 Margin="600 0 20 40"
-                Click="btnDeleteTariff_Click"/>
+                Click="btnDeleteTariff_Click" Background="#FF37BFB2" BorderBrush="#FF37BFB2"/>
     </Grid>
 </Page>

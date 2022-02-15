@@ -44,9 +44,6 @@ namespace TelephoneNetwork.Windows.Operator
         {
             var list = EntEF.Context.TariffPlan.Where(i => i.IsDeleted != true).ToList();
 
-            lvTariffPlan.ItemsSource = list.Where(i => i.TariffName.ToLower().Contains(txbSearch.Text) ||
-                                                  i.Description.ToLower().Contains(txbSearch.Text.ToLower()));
-
             if (txbSearch.Text == "")
             {
                 lvTariffPlan.ItemsSource = list;

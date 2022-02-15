@@ -14,7 +14,7 @@ namespace TelephoneNetwork.EF
     
     public partial class CallsOutView
     {
-        public int IdOutNumber { get; set; }
+        public int IdOut { get; set; }
         public string NumberName { get; set; }
         public int IdCalls { get; set; }
     }

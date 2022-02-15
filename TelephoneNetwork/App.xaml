@@ -7,7 +7,7 @@
         <Style TargetType="TextBlock" x:Key="TextBlockSign">
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
             <Setter Property="FontSize" Value="24"/>
-            <Setter Property="Foreground" Value="#5BF3C8"/>
+            <Setter Property="Foreground" Value="#FF37BFB3"/>
         </Style>
 
         <Style TargetType="TextBlock" x:Key="TextBlockMain">
@@ -17,9 +17,9 @@
 
         <Style TargetType="TextBox" x:Key="TextBoxSign">
             <Setter Property="Background" Value="#F1FFFB"/>
-            <Setter Property="BorderBrush" Value="#5BF3C8"/>
+            <Setter Property="BorderBrush" Value="#FF37BFB3"/>
             <Setter Property="BorderThickness" Value="3"/>
-            <Setter Property="Foreground" Value="#54C0A2"/>
+            <Setter Property="Foreground" Value="#FF37BFB3"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
             <Setter Property="FontSize" Value="40"/>
             <Setter Property="Width" Value="350"/>
@@ -28,18 +28,18 @@
 
         <Style TargetType="ComboBox">
             <Setter Property="Background" Value="#F1FFFB"/>
-            <Setter Property="BorderBrush" Value="#5BF3C8"/>
+            <Setter Property="BorderBrush" Value="#FF37BFB3"/>
             <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Foreground" Value="#54C0A2"/>
+            <Setter Property="Foreground" Value="#FF37BFB3"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
             <Setter Property="FontSize" Value="20"/>
         </Style>
 
         <Style TargetType="PasswordBox" x:Key="PasswordBoxSign">
             <Setter Property="Background" Value="#F1FFFB"/>
-            <Setter Property="BorderBrush" Value="#5BF3C8"/>
+            <Setter Property="BorderBrush" Value="#FF37BFB3"/>
             <Setter Property="BorderThickness" Value="3"/>
-            <Setter Property="Foreground" Value="#5BF3C8"/>
+            <Setter Property="Foreground" Value="#FF37BFB3"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
             <Setter Property="FontSize" Value="40"/>
             <Setter Property="Width" Value="350"/>
@@ -47,8 +47,8 @@
         </Style>
 
         <Style TargetType="Button" x:Key="ButtonBig">
-            <Setter Property="Background" Value="#5BF3C8"/>
-            <Setter Property="BorderBrush" Value="#5BF3C8"/>
+            <Setter Property="Background" Value="#FF37BFB3"/>
+            <Setter Property="BorderBrush" Value="#FF37BFB3"/>
             <Setter Property="Foreground" Value="#F1FFFB"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
             <Setter Property="FontSize" Value="24"/>
@@ -66,15 +66,15 @@
 
 
         <Style TargetType="GridViewColumnHeader">
-            <Setter Property="Background" Value="#5BF3C8"/>
+            <Setter Property="Background" Value="#FF37BFB3"/>
             <Setter Property="Foreground" Value="#F1FFFB"/>
-            <Setter Property="BorderBrush" Value="#5BF3C8"/>
+            <Setter Property="BorderBrush" Value="#FF37BFB3"/>
             <Setter Property="FontFamily" Value="Franklin Gothic Book"/>
         </Style>
 
         <Style TargetType="ListViewItem">
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="Foreground" Value="#54C0A2"/>
+            <Setter Property="Foreground" Value="#FF37BFB3"/>
             <Setter Property="FontSize" Value="16"/>
         </Style>
 

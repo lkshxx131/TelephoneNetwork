@@ -17,7 +17,7 @@
                        Style="{StaticResource TextBlockSign}"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Top"
-                       Margin="0 50"/>
+                       Margin="0 50" Foreground="#FF37BFB3"/>
         <StackPanel HorizontalAlignment="Left"
                     Width="200"
                     Height="280"
@@ -25,7 +25,7 @@
             <TextBlock Text="Фамилия"
                        HorizontalAlignment="Left"
                        Style="{StaticResource TextBlockSign}"
-                       FontSize="18"/>
+                       FontSize="18" Foreground="#FF37BFB3"/>
             <TextBox x:Name="txbLastName"
                      HorizontalAlignment="Left"
                      Style="{StaticResource TextBoxSign}"
@@ -35,11 +35,11 @@
                      Height="30"
                      Margin="0 10 0 10"
                      PreviewTextInput="txbLastName_PreviewTextInput"
-                     LostFocus="txbLastName_LostFocus"/>
+                     LostFocus="txbLastName_LostFocus" BorderBrush="#FF37BFB3" Foreground="#FF37BFB3"/>
             <TextBlock Text="Имя"
                        HorizontalAlignment="Left"
                        Style="{StaticResource TextBlockSign}"
-                       FontSize="18"/>
+                       FontSize="18" Foreground="#FF37BFB3"/>
             <TextBox x:Name="txbFirstName"
                      HorizontalAlignment="Left"
                      Style="{StaticResource TextBoxSign}"
@@ -49,11 +49,11 @@
                      Height="30"
                      Margin="0 10 0 10"
                      PreviewTextInput="txbFirstName_PreviewTextInput"
-                     LostFocus="txbFirstName_LostFocus"/>
+                     LostFocus="txbFirstName_LostFocus" Foreground="#FF37BFB3" BorderBrush="#FF37BFB3"/>
             <TextBlock Text="Отчество"
                        HorizontalAlignment="Left"
                        Style="{StaticResource TextBlockSign}"
-                       FontSize="18"/>
+                       FontSize="18" Foreground="#FF37BFB3"/>
             <TextBox x:Name="txbPatronymic"
                      HorizontalAlignment="Left"
                      Style="{StaticResource TextBoxSign}"
@@ -62,41 +62,41 @@
                      Width="200"
                      Height="30"
                      Margin="0 10 0 20"
-                     PreviewTextInput="txbPatronymic_PreviewTextInput"/>
+                     PreviewTextInput="txbPatronymic_PreviewTextInput" BorderBrush="#FF37BFB3" Foreground="#FF37BFB3"/>
             <ComboBox x:Name="cmbGender"
                       HorizontalAlignment="Left"
                       Width="150"
-                      Height="30"/>
+                      Height="30" BorderBrush="#FF37BFB3" Foreground="#FF37BFB3"/>
         </StackPanel>
 
         <StackPanel HorizontalAlignment="Right"
                     Width="400"
                     Height="280"
                     Margin="100 50 30 0">
-            
+
             <WrapPanel>
                 <StackPanel>
                     <TextBlock Text="Дата рождения"
                        HorizontalAlignment="Left"
                        Style="{StaticResource TextBlockSign}"
-                       FontSize="18"/>
+                       FontSize="18" Foreground="#FF37BFB3"/>
                     <DatePicker x:Name="dpBirthDate"
                                 HorizontalAlignment="Left"
                                 Background="#F1FFFB"
-                                BorderBrush="#5BF3C8"
-                                Foreground="#54C0A2"
+                                BorderBrush="#FF37BFB3"
+                                Foreground="#FF37BFB3"
                                 BorderThickness="2"
                                 FontSize="16"
                                 Width="135"
                                 Height="30"
                                 Margin="0 10 0 10"/>
                 </StackPanel>
-                
+
                 <StackPanel Margin="45 0 0 0">
                     <TextBlock Text="Email"
                        HorizontalAlignment="Left"
                        Style="{StaticResource TextBlockSign}"
-                       FontSize="18"/>
+                       FontSize="18" Foreground="#FF37BFB3"/>
                     <TextBox x:Name="txbEmail"
                              Style="{StaticResource TextBoxSign}"
                              BorderThickness="2"
@@ -104,7 +104,7 @@
                              Width="200"
                              Height="30"
                              Margin="0 10 0 10"
-                             PreviewTextInput="txbEmail_PreviewTextInput"/>
+                             PreviewTextInput="txbEmail_PreviewTextInput" BorderBrush="#FF37BFB3" Foreground="#FF37BFB3"/>
                 </StackPanel>
             </WrapPanel>
 
@@ -113,7 +113,7 @@
                     <TextBlock Text="Серия паспорта"
                        HorizontalAlignment="Left"
                        Style="{StaticResource TextBlockSign}"
-                       FontSize="18"/>
+                       FontSize="18" Foreground="#FF37BFB3"/>
                     <TextBox x:Name="txbSeriesPassport"
                              HorizontalAlignment="Left"
                              Style="{StaticResource TextBoxSign}"
@@ -123,13 +123,13 @@
                              Height="30"
                              Margin="0 10 0 10"
                              PreviewTextInput="txbSeriesPassport_PreviewTextInput"
-                             LostFocus="txbSeriesPassport_LostFocus"/>
+                             LostFocus="txbSeriesPassport_LostFocus" BorderBrush="#FF37BFB3" Foreground="#FF37BFB3"/>
                 </StackPanel>
                 <StackPanel Margin="45 0 0 0">
                     <TextBlock Text="Номер паспорта"
                                HorizontalAlignment="Left"
                                Style="{StaticResource TextBlockSign}"
-                               FontSize="18"/>
+                               FontSize="18" Foreground="#FF37BFB3"/>
                     <TextBox x:Name="txbNumberPassport"
                              HorizontalAlignment="Left"
                              Style="{StaticResource TextBoxSign}"
@@ -139,14 +139,14 @@
                              BorderThickness="2"
                              Margin="0 10 0 10"
                              PreviewTextInput="txbNumberPassport_PreviewTextInput"
-                             LostFocus="txbNumberPassport_LostFocus"/>
+                             LostFocus="txbNumberPassport_LostFocus" Foreground="#FF37BFB3" BorderBrush="#FF37BFB3"/>
                 </StackPanel>
             </WrapPanel>
-            
+
             <TextBlock Text="Адрес"
                        HorizontalAlignment="Left"
                        Style="{StaticResource TextBlockSign}"
-                       FontSize="18"/>
+                       FontSize="18" Foreground="#FF37BFB3"/>
             <TextBox x:Name="txbAddress"
                      HorizontalAlignment="Left"
                      Style="{StaticResource TextBoxSign}"
@@ -155,13 +155,13 @@
                      Width="380"
                      Height="30"
                      Margin="0 10 0 10"
-                     PreviewTextInput="txbAddress_PreviewTextInput"/>
+                     PreviewTextInput="txbAddress_PreviewTextInput" BorderBrush="#FF37BFB3" Foreground="#FF37BFB3"/>
 
             <WrapPanel>
                 <ComboBox x:Name="cmbBenefit"
                       HorizontalAlignment="Left"
                       Width="135"
-                      Height="30"/>
+                      Height="30" Foreground="#FF37BFB3" BorderBrush="#FF37BFB3"/>
                 <StackPanel  Margin="45 0 0 0">
                     <TextBox x:Name="txbBenefitCertificate"
                              ToolTip="Льготное удостоверение"
@@ -172,7 +172,7 @@
                              Width="200"
                              Height="30"
                              Margin="0 10 0 10"
-                             PreviewTextInput="txbBenefitCertificate_PreviewTextInput"/>
+                             PreviewTextInput="txbBenefitCertificate_PreviewTextInput" BorderBrush="#FF37BFB3" Foreground="#FF37BFB3"/>
                 </StackPanel>
             </WrapPanel>
         </StackPanel>
@@ -186,7 +186,7 @@
                     FontSize="18"
                     Width="100"
                     Height="30"
-                    Click="Cancel_Click"/>
+                    Click="Cancel_Click" Background="#FF37BFB3" BorderBrush="#FF37BFB3"/>
             <Button x:Name="SaveSubscriber"
                     Content="Сохранить"
                     Style="{StaticResource ButtonBig}"
@@ -194,7 +194,7 @@
                     Width="100"
                     Height="30"
                     Margin="400 0 0 0"
-                    Click="SaveSubscriber_Click"/>
+                    Click="SaveSubscriber_Click" BorderBrush="#FF37BFB3" Background="#FF37BFB3"/>
         </WrapPanel>
     </Grid>
 </Window>

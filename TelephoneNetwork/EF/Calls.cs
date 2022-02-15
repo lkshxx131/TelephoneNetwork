@@ -15,10 +15,10 @@ namespace TelephoneNetwork.EF
     public partial class Calls
     {
         public int IdCalls { get; set; }
-        public int IdInNumber { get; set; }
-        public int IdOutNumber { get; set; }
         public System.DateTime CallsDate { get; set; }
         public int DurationInMinute { get; set; }
+        public int IdIn { get; set; }
+        public int IdOut { get; set; }
     
         public virtual Number Number { get; set; }
         public virtual Number Number1 { get; set; }

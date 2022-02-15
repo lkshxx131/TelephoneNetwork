@@ -9,10 +9,10 @@
         Width="1180"
         Height="720"
         Icon="LogoSmall.png"
-        Background="#F1FFFB"
+        Background="White"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen">
-    
+
     <Grid>
         <Image Source="LogoMain.png"
                HorizontalAlignment="Center"
@@ -23,7 +23,7 @@
 
         <Button x:Name="btnClose"
                 Content="Закрыть"
-                Foreground="#5BF3C8"
+                Foreground="#FF37BFB2"
                 FontSize="24"
                 Style="{StaticResource ButtonSmall}"
                 HorizontalAlignment="Left"
@@ -36,20 +36,20 @@
             <TextBlock Text="Введите логин:"
                        HorizontalAlignment="Left"
                        Margin="0 300 0 15"
-                       Style="{StaticResource TextBlockSign}"/>
+                       Style="{StaticResource TextBlockSign}" Foreground="#FF37BFB2"/>
             <TextBox x:Name="txbLogin"
-                     Foreground="#5BF3C8"
-                     Style="{StaticResource TextBoxSign}"/>
+                     Foreground="#FF37BFB2"
+                     Style="{StaticResource TextBoxSign}" TextChanged="txbLogin_TextChanged" BorderBrush="#FF37BFB2"/>
             <TextBlock Text="Введите пароль:"
                        HorizontalAlignment="Left"
                        Margin="0 20 0 15"
-                       Style="{StaticResource TextBlockSign}"/>
+                       Style="{StaticResource TextBlockSign}" Foreground="#FF37BFB2"/>
             <PasswordBox x:Name="psbPassword"
-                         Style="{StaticResource PasswordBoxSign}"/>
+                         Style="{StaticResource PasswordBoxSign}" Foreground="#FF37BFB2" BorderBrush="#FF37BFB2"/>
             <Button x:Name="btnSign"
                     Content="Войти"
                     Margin="0 35"
-                    Style="{StaticResource ButtonBig}" Click="btnSign_Click"/>
-        </StackPanel> 
+                    Style="{StaticResource ButtonBig}" Click="btnSign_Click" Background="#FF37BFB2" BorderBrush="#FF37BFB2"/>
+        </StackPanel>
     </Grid>
 </Window>

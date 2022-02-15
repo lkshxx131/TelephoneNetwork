@@ -18,11 +18,11 @@
             <TextBlock Text="Добавление номера"
                        Margin="0 30 0 25"
                        HorizontalAlignment="Center"
-                       Style="{StaticResource TextBlockSign}"/>
+                       Style="{StaticResource TextBlockSign}" Foreground="#FF37BFB3"/>
             <TextBlock Text="Номер:"
                        HorizontalAlignment="Left"
                        Style="{StaticResource TextBlockSign}"
-                       FontSize="18"/>
+                       FontSize="18" Foreground="#FF37BFB3"/>
             <TextBox x:Name="txbNumber"
                      HorizontalAlignment="Left"
                      Style="{StaticResource TextBoxSign}"
@@ -32,16 +32,16 @@
                      Height="30"
                      Margin="0 10 0 10"
                      PreviewTextInput ="txbNumber_PreviewTextInput"
-                     LostFocus="txbNumber_LostFocus"/>
+                     LostFocus="txbNumber_LostFocus" Foreground="#FF37BFB3" BorderBrush="#FF37BFB3"/>
             <TextBlock Text="Тариф:"
                        HorizontalAlignment="Left"
                        Style="{StaticResource TextBlockSign}"
-                       FontSize="18"/>
+                       FontSize="18" Foreground="#FF37BFB3"/>
             <ComboBox x:Name="cmbTariffPlan"
                       HorizontalAlignment="Left"
                       Width="250"
                       Height="30"
-                      Margin="0 10 0 20"/>
+                      Margin="0 10 0 20" Foreground="#FF37BFB3" BorderBrush="#FF37BFB3"/>
             <WrapPanel HorizontalAlignment="Center">
                 <Button x:Name="Cancel"
                         Content="Отменить"
@@ -49,7 +49,7 @@
                         FontSize="18"
                         Width="100"
                         Height="30"
-                        Click="Cancel_Click"/>
+                        Click="Cancel_Click" BorderBrush="#FF37BFB3" Background="#FF37BFB3"/>
                 <Button x:Name="SaveNumber"
                         Content="Сохранить"
                         Margin="30 0 0 0"
@@ -57,7 +57,7 @@
                         FontSize="18"
                         Width="100"
                         Height="30"
-                        Click="SaveNumber_Click"/>
+                        Click="SaveNumber_Click" Background="#FF37BFB3" BorderBrush="#FF37BFB3"/>
             </WrapPanel>
         </StackPanel>
     </Grid>
